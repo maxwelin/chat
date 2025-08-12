@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-* {
+body {
   font-family: "Press Start 2P", monospace;
   background-color: #1a1a1a;
   color: #e6e6e6;
@@ -22,11 +22,9 @@ input {
   outline: none;
 }
 
-span {
-  /* color: #00e5ff !important;
+/* color: #00e5ff !important;
   color: #00ff99 !important;
   color: #ffcc00 !important;
   color: #ff0080 !important;
   color: #aa88ff !important; */
-  color: #ff9500 !important;
-}
+/* color: #ff9500 !important; */
