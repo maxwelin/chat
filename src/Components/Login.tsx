@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../Hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
+import SecondaryButton from "./Shared/SecondaryButton";
+import PrimaryButton from "./Shared/PrimaryButton";
 
 const Login = () => {
   const { login, loggedIn } = useAuth();
@@ -33,32 +35,34 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username">Username</label>
-      <input
-        value={username}
-        onChange={handeUsernameChange}
-        id="username"
-        type="text"
-        autoComplete="username"
-        className="border rounded"
-      />
-      <label htmlFor="password">Password</label>
-      <input
-        value={password}
-        onChange={handlePasswordChange}
-        id="password"
-        type="password"
-        autoComplete="current-password"
-        className="border rounded"
-      />
-      <button type="submit" className="border rounded">
-        Login
-      </button>
-      <Link to={"/register"} className="border rounded">
-        No account? Register
-      </Link>
-    </form>
+    <div className="w-full flex place-content-center">
+      <form onSubmit={handleSubmit} className="flex flex-col w-1/4">
+        <label htmlFor="username">Username:</label>
+        <input
+          required
+          value={username}
+          onChange={handeUsernameChange}
+          id="username"
+          type="text"
+          autoComplete="username"
+          className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-[#00ff99] outline-none"
+        />
+        <label htmlFor="password">Password:</label>
+        <input
+          required
+          value={password}
+          onChange={handlePasswordChange}
+          id="password"
+          type="password"
+          autoComplete="current-password"
+          className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-[#00ff99] outline-none"
+        />
+        <PrimaryButton type="submit" text="log in" icon="→" />
+        <Link to={"/register"}>
+          <SecondaryButton text="No account? Sign up" />
+        </Link>
+      </form>
+    </div>
   );
 };
 export default Login;

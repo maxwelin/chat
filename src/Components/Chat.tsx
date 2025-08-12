@@ -1,4 +1,5 @@
 import { useAuth } from "../Hooks/useAuth";
+import PrimaryButton from "./Shared/PrimaryButton";
 
 const Chat = () => {
   const { logout, decodedJwt } = useAuth();
@@ -9,12 +10,17 @@ const Chat = () => {
     logout();
   };
   return (
-    <>
-      <h1>Välkommen {user}</h1>
-      <button onClick={handleLogOut} className="border rounded">
-        Logga ut
-      </button>
-    </>
+    <div className="w-full flex place-content-center">
+      <div className="flex flex-col w-1/4">
+        <h1>Welcome {user}</h1>
+        <PrimaryButton
+          type="button"
+          fn={handleLogOut}
+          text="log out"
+          icon="→"
+        />
+      </div>
+    </div>
   );
 };
 export default Chat;

@@ -1,1 +1,24 @@
 @import "tailwindcss";
+
+* {
+  font-family: "Press Start 2P", monospace;
+  background-color: #1a1a1a;
+  color: #e6e6e6;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: none;
+  image-rendering: pixelated;
+}
+
+button {
+  transition: all 0.2s ease;
+}
+
+button > span {
+  scale: 1.1;
+}
+
+input {
+  caret-color: #00ff99;
+  outline: none;
+  /* border: 1px dashed; */
+}
