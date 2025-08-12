@@ -5,7 +5,7 @@ const PrimaryButton = ({ type, fn, text, icon }: ButtonProps) => {
     <button
       onClick={fn}
       type={type}
-      className="border-2 w-full group mt-5  border-[#ff0080] px-1 py-0.5 uppercase mb-1 cursor-pointer"
+      className="border-2 w-full group mt-5  border-[#00e5ff] px-1 py-0.5 uppercase mb-1 cursor-pointer"
     >
       {text + " "}
       <p className="inline-block transition-transform duration-150  text-[#00e5ff] group-hover:translate-x-3">
