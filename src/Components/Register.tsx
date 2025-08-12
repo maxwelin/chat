@@ -3,7 +3,6 @@ import { useAuth } from "../Hooks/useAuth";
 import { useEffect, useState } from "react";
 import type { RegisterBody } from "../Models/RegisterBody.model";
 import "../index.css";
-import Button from "./Shared/PrimaryButton";
 import SecondaryButton from "./Shared/SecondaryButton";
 import PrimaryButton from "./Shared/PrimaryButton";
 
@@ -69,7 +68,7 @@ const Register = () => {
           id="username"
           type="text"
           autoComplete="username"
-          className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-[#00ff99] outline-none"
+          className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-[#00e5ff] outline-none"
         />
         <label htmlFor="password">Password:</label>
         <input
@@ -79,7 +78,7 @@ const Register = () => {
           id="password"
           type="password"
           autoComplete="current-password"
-          className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-[#00ff99] outline-none"
+          className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-[#00e5ff] outline-none"
         />
         <label htmlFor="password">Repeat password:</label>
         <input
@@ -89,7 +88,7 @@ const Register = () => {
           id="repeat-password"
           type="password"
           autoComplete="current-password"
-          className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-[#00ff99] outline-none"
+          className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-[#00e5ff] outline-none"
         />
         <label htmlFor="email">Email:</label>
         <input
@@ -99,12 +98,12 @@ const Register = () => {
           id="email"
           type="email"
           autoComplete="email"
-          className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-[#00ff99] outline-none"
+          className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-[#00e5ff] outline-none"
         />
         <PrimaryButton type="submit" text="sign up" icon="→" />
 
         <Link to={"/login"}>
-          <SecondaryButton text="Already signed up? Log in" />
+          <SecondaryButton text="Already signed up?" cta=" Log in" />
         </Link>
       </form>
     </div>

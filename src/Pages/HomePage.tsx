@@ -8,11 +8,11 @@ const HomePage = () => {
       <div className="flex flex-col w-1/4">
         <h1>Welcome, please log in</h1>
         <Link to={"/login"}>
-          <Button type="button" text="sign up" icon="→" />
+          <Button type="button" text="log in" icon="→" />
         </Link>
 
         <Link to={"/register"}>
-          <SecondaryButton text="No account? Sign up" />
+          <SecondaryButton text="No account?" cta=" Sign up" />
         </Link>
       </div>
     </div>

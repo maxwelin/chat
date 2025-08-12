@@ -1,7 +1,8 @@
-const SecondaryButton = ({ text }: { text: string }) => {
+const SecondaryButton = ({ text, cta }: { text: string; cta: string }) => {
   return (
-    <button className="w-full px-1 py-0.5 mb-1 cursor-pointer uppercase">
+    <button className="w-full cursor-pointer uppercase">
       {text}
+      <span className="text-[#00e5ff]">{cta}</span>
     </button>
   );
 };

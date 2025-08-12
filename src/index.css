@@ -10,7 +10,7 @@
 }
 
 button {
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 button > span {
@@ -18,7 +18,14 @@ button > span {
 }
 
 input {
-  caret-color: #00ff99;
+  caret-color: #00e5ff;
   outline: none;
-  /* border: 1px dashed; */
+}
+
+span {
+  color: #00e5ff !important;
+  /* color: #00ff99 !important;
+  color: #ffcc00 !important;
+  color: #ff0080 !important;
+  color: #aa88ff !important; */
 }
