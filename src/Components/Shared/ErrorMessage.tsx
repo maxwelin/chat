@@ -12,7 +12,7 @@ const ErrorMessage = () => {
     return () => {
       clearTimeout(timeout);
     };
-  }, [errorMessage]);
+  }, [errorMessage, setErrorMessage]);
 
   if (errorMessage)
     return (
