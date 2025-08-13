@@ -5,13 +5,17 @@ const PrimaryButton = ({ type, fn, text, icon }: ButtonProps) => {
     <button
       onClick={fn}
       type={type}
-      className="border-2 w-full group mt-5  border-[#00e5ff] px-1 py-0.5 uppercase mb-1 cursor-pointer"
+      className="w-full group mt-5 font-mono uppercase outline-0 text-left cursor-pointer"
     >
-      {text + " "}
-      <p className="inline-block transition-transform duration-150  text-[#ff9500] group-hover:translate-x-3">
+      <span className="text-gray-500 group-focus-within:text-secondary group-hover:text-secondary">
+        $
+      </span>{" "}
+      {text}{" "}
+      <span className="inline-block transition-transform duration-30 text-primary group-focus:translate-x-3 group-hover:translate-x-3">
         {icon}
-      </p>
+      </span>
     </button>
   );
 };
+
 export default PrimaryButton;

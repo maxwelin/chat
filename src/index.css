@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #ff9500;
+  --color-secondary: #00e5ff;
+  --color-text-primary: #e6e6e6;
+}
+
 body {
   font-family: "Press Start 2P", monospace;
   background-color: #1a1a1a;
@@ -9,22 +15,14 @@ body {
   image-rendering: pixelated;
 }
 
-button {
-  transition: transform 0.2s ease;
-}
-
-button > span {
-  scale: 1.1;
-}
-
 input {
   caret-color: #ff9500;
   outline: none;
 }
 
 /* color: #00e5ff !important;
-  color: #00ff99 !important;
-  color: #ffcc00 !important;
-  color: #ff0080 !important;
-  color: #aa88ff !important; */
-/* color: #ff9500 !important; */
+color: #00ff99 !important;
+color: #ffcc00 !important;
+color: #ff0080 !important;
+color: #aa88ff !important;
+color: #ff9500 !important; */

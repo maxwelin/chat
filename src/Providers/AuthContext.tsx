@@ -10,7 +10,6 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
   const [csrfToken, setCsrfToken] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  const [registered, setRegistered] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [decodedJwt, setDecodedJwt] = useState<JwtBody>({
     avatar: "",
@@ -62,8 +61,6 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
         }, 5000);
         throw new Error(result.error || `Response status: ${response.status}`);
       }
-
-      setRegistered(true);
     } catch (error) {
       console.error(error);
     }
@@ -119,8 +116,6 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
         login,
         loggedIn,
         setLoggedIn,
-        registered,
-        setRegistered,
         logout,
         errorMessage,
         setErrorMessage,

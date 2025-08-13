@@ -1,15 +1,18 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Hooks/useAuth";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { RegisterBody } from "../Models/RegisterBody.model";
 import "../index.css";
 import SecondaryButton from "./Shared/SecondaryButton";
 import PrimaryButton from "./Shared/PrimaryButton";
+import FormControl from "./Shared/FormControl";
+import ErrorMessage from "./Shared/ErrorMessage";
 
 const Register = () => {
-  const { register, registered } = useAuth();
+  const { register, setErrorMessage } = useAuth();
   const navigate = useNavigate();
 
+  const [repeatPassword, setRepeatPassword] = useState("");
   const [formData, setFormData] = useState<RegisterBody>({
     username: "",
     password: "",
@@ -17,13 +20,11 @@ const Register = () => {
     avatar: "",
   });
 
-  const [repeatPassword, setRepeatPassword] = useState("");
-
   useEffect(() => {
-    if (registered === true) {
-      navigate("/login");
+    if (usernameInputRef.current) {
+      usernameInputRef.current.focus();
     }
-  }, [registered, navigate]);
+  }, []);
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, password: e.target.value });
@@ -46,7 +47,7 @@ const Register = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (formData.password !== repeatPassword) {
-      alert("FEL lösenORD!!!!!!!!");
+      setErrorMessage("password does not match");
       return;
     }
     register({
@@ -55,56 +56,48 @@ const Register = () => {
       email: formData.email,
       avatar: "",
     });
+    navigate("/login");
   };
+
+  const usernameInputRef = useRef<HTMLInputElement>(null);
 
   return (
     <div className="w-full flex place-content-center">
       <form onSubmit={handleSubmit} className="flex flex-col w-1/4">
-        <label htmlFor="username">Username:</label>
-        <input
-          required
-          value={formData.username}
-          onChange={handleUsernameChange}
-          id="username"
+        <FormControl
+          ref={usernameInputRef}
           type="text"
-          autoComplete="username"
-          className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-[#00e5ff] outline-none"
+          id="username"
+          value={formData.username}
+          fn={handleUsernameChange}
+          label="username"
         />
-        <label htmlFor="password">Password:</label>
-        <input
-          required
-          value={formData.password}
-          onChange={handlePasswordChange}
+        <FormControl
+          type="password"
           id="password"
-          type="password"
-          autoComplete="current-password"
-          className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-[#00e5ff] outline-none"
+          value={formData.password}
+          fn={handlePasswordChange}
+          label="password"
         />
-        <label htmlFor="password">Repeat password:</label>
-        <input
-          required
+        <FormControl
+          type="password"
+          id="repeatPassword"
           value={repeatPassword}
-          onChange={handleRepeatPasswordChange}
-          id="repeat-password"
-          type="password"
-          autoComplete="current-password"
-          className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-[#00e5ff] outline-none"
+          fn={handleRepeatPasswordChange}
+          label="password"
         />
-        <label htmlFor="email">Email:</label>
-        <input
-          required
-          value={formData.email}
-          onChange={handleEmailChange}
+        <FormControl
+          type="text"
           id="email"
-          type="email"
-          autoComplete="email"
-          className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-[#00e5ff] outline-none"
+          value={formData.email}
+          fn={handleEmailChange}
+          label="email"
         />
+
         <PrimaryButton type="submit" text="sign up" icon="→" />
 
-        <Link to={"/login"}>
-          <SecondaryButton text="Already signed up?" cta=" Log in" />
-        </Link>
+        <SecondaryButton text="already signed up?" cta=" log in" to="/login" />
+        <ErrorMessage />
       </form>
     </div>
   );

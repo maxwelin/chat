@@ -1,9 +1,21 @@
-const SecondaryButton = ({ text, cta }: { text: string; cta: string }) => {
+import { Link } from "react-router-dom";
+import type { SecondaryButtonType } from "../../Models/SecondaryButton.model";
+
+const SecondaryButton = ({ text, cta, to }: SecondaryButtonType) => {
   return (
-    <button className="w-full cursor-pointer uppercase">
-      {text}
-      <span className="text-[#00e5ff]">{cta}</span>
-    </button>
+    <Link
+      to={to}
+      className="group outline-0 flex hover:text-secondary text-gray-500"
+    >
+      <span className="group-focus:text-secondary">$ </span> &nbsp;
+      <button className="group w-full text-gray-500 outline-0 font-mono  cursor-pointer text-left">
+        {text}{" "}
+        <span className="group-hover:text-primary text-gray-400 group-focus:text-primary">
+          {cta}
+        </span>
+      </button>
+    </Link>
   );
 };
+
 export default SecondaryButton;
