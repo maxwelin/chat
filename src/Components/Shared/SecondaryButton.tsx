@@ -5,10 +5,13 @@ const SecondaryButton = ({ text, cta, to }: SecondaryButtonType) => {
   return (
     <Link
       to={to}
-      className="group outline-0 flex hover:text-secondary text-gray-500"
+      className="group outline-0 flex group-focus:text-secondary group-hover:text-secondary text-gray-500"
     >
-      <span className="group-focus:text-secondary">$ </span> &nbsp;
-      <button className="group w-full text-gray-500 outline-0 font-mono  cursor-pointer text-left">
+      <span className="group-focus:text-secondary group-hover:text-secondary">
+        ${" "}
+      </span>{" "}
+      &nbsp;
+      <button className="group w-full text-gray-500 outline-0 cursor-pointer text-left">
         {text}{" "}
         <span className="group-hover:text-primary text-gray-400 group-focus:text-primary">
           {cta}

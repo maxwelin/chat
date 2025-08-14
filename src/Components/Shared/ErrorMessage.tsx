@@ -7,7 +7,7 @@ const ErrorMessage = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setErrorMessage("");
-    }, 2000);
+    }, 3000);
 
     return () => {
       clearTimeout(timeout);
@@ -18,7 +18,7 @@ const ErrorMessage = () => {
     return (
       <>
         <div className="flex">
-          <span className="text-red-500">$ </span>&nbsp;
+          <span className="text-red-500">$</span>&nbsp;
           <span className=""> {errorMessage}</span>
         </div>
       </>

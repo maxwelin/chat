@@ -9,7 +9,7 @@ import FormControl from "./Shared/FormControl";
 import ErrorMessage from "./Shared/ErrorMessage";
 
 const Register = () => {
-  const { register, setErrorMessage } = useAuth();
+  const { register, setErrorMessage, registered, setRegistered } = useAuth();
   const navigate = useNavigate();
 
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -56,7 +56,10 @@ const Register = () => {
       email: formData.email,
       avatar: "",
     });
-    navigate("/login");
+    if (registered === true) {
+      navigate("/login");
+      setRegistered(false);
+    }
   };
 
   const usernameInputRef = useRef<HTMLInputElement>(null);
@@ -87,7 +90,7 @@ const Register = () => {
           label="password"
         />
         <FormControl
-          type="text"
+          type="email"
           id="email"
           value={formData.email}
           fn={handleEmailChange}

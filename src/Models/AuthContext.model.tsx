@@ -10,6 +10,8 @@ export interface AuthContextProps {
   login: (body: LoginBody) => Promise<void>;
   loggedIn: boolean;
   setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  registered: boolean;
+  setRegistered: React.Dispatch<React.SetStateAction<boolean>>;
   logout: () => void;
   errorMessage: string;
   setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
