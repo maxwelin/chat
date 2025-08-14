@@ -1,3 +1,3 @@
 export default function getTimeStamp() {
-  return "$ " + new Date().toLocaleTimeString();
+  return new Date().toLocaleTimeString();
 }

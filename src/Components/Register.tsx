@@ -6,8 +6,10 @@ import "../index.css";
 import SecondaryButton from "./Shared/SecondaryButton";
 import PrimaryButton from "./Shared/PrimaryButton";
 import FormControl from "./Shared/FormControl";
-import ErrorMessage from "./Shared/ErrorMessage";
 import Title from "./Shared/Title";
+import HomeBtn from "./Shared/HomeButton";
+import MessageLogger from "./Shared/MessageLogger";
+import EmptyChatRow from "./Shared/EmptyChatRow";
 
 const Register = () => {
   const { register, setErrorMessage, registered, setRegistered } = useAuth();
@@ -30,6 +32,13 @@ const Register = () => {
       usernameInputRef.current.focus();
     }
   }, []);
+
+  useEffect(() => {
+    if (registered === true) {
+      navigate("/login");
+      setRegistered(false);
+    }
+  }, [registered, navigate, setRegistered]);
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, password: e.target.value });
@@ -61,58 +70,51 @@ const Register = () => {
       email: formData.email,
       avatar: "",
     });
-    if (registered === true) {
-      navigate("/login");
-      setRegistered(false);
-    }
   };
 
   const usernameInputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className="w-full flex place-content-center">
-      <form onSubmit={handleSubmit} className="flex flex-col h-80 w-1/4 ">
+    <div className="w-full flex place-content-center ">
+      <form onSubmit={handleSubmit} className="flex flex-col w-lg">
+        <HomeBtn />
         <Title title="register" />
+        <EmptyChatRow />
         <FormControl
           ref={usernameInputRef}
           type="text"
           id="username"
           value={formData.username}
           fn={handleUsernameChange}
-          label="username"
+          label="register"
+          placeholder="username"
         />
         <FormControl
           type="password"
           id="password"
           value={formData.password}
           fn={handlePasswordChange}
-          label="password"
+          placeholder="password"
         />
         <FormControl
           type="password"
           id="repeatPassword"
           value={repeatPassword}
           fn={handleRepeatPasswordChange}
-          label="password"
+          placeholder="password"
         />
         <FormControl
           type="email"
           id="email"
           value={formData.email}
           fn={handleEmailChange}
-          label="email"
+          placeholder="email"
         />
-        <ErrorMessage />
-
-        <div className="mt-auto">
-          <PrimaryButton type="submit" text="sign up" icon="→" />
-
-          <SecondaryButton
-            text="already signed up?"
-            cta=" log in"
-            to="/login"
-          />
-        </div>
+        <EmptyChatRow />
+        <EmptyChatRow />
+        <PrimaryButton type="submit" text="sign up" icon="→" />
+        <SecondaryButton text="already signed up?" cta=" log in" to="/login" />
+        <MessageLogger />
       </form>
     </div>
   );

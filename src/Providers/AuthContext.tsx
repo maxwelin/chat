@@ -12,6 +12,7 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [registered, setRegistered] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [decodedJwt, setDecodedJwt] = useState<JwtBody>({
     avatar: "",
     email: "",
@@ -54,13 +55,13 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
         body: JSON.stringify({ ...body, csrfToken: csrfToken }),
       });
       const result = await response.json();
-      console.log(result);
 
       if (!response.ok) {
         setErrorMessage(result.error);
 
         throw new Error(result.error || `Response status: ${response.status}`);
       }
+      setSuccessMessage(result.message);
       setRegistered(true);
     } catch (error) {
       console.error(error);
@@ -120,6 +121,8 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
         logout,
         errorMessage,
         setErrorMessage,
+        successMessage,
+        setSuccessMessage,
         decodedJwt,
         setDecodedJwt,
       }}

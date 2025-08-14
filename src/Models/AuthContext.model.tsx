@@ -15,6 +15,8 @@ export interface AuthContextProps {
   logout: () => void;
   errorMessage: string;
   setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
+  successMessage: string;
+  setSuccessMessage: React.Dispatch<React.SetStateAction<string>>;
   decodedJwt: JwtBody;
   setDecodedJwt: React.Dispatch<React.SetStateAction<JwtBody>>;
 }

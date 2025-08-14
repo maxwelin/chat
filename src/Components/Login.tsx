@@ -5,7 +5,9 @@ import SecondaryButton from "./Shared/SecondaryButton";
 import PrimaryButton from "./Shared/PrimaryButton";
 import Title from "./Shared/Title";
 import FormControl from "./Shared/FormControl";
-import ErrorMessage from "./Shared/ErrorMessage";
+import HomeBtn from "./Shared/HomeButton";
+import MessageLogger from "./Shared/MessageLogger";
+import EmptyChatRow from "./Shared/EmptyChatRow";
 
 const Login = () => {
   const { login, loggedIn, setErrorMessage } = useAuth();
@@ -51,27 +53,44 @@ const Login = () => {
 
   return (
     <div className="w-full flex place-content-center">
-      <form onSubmit={handleSubmit} className="flex flex-col h-80  w-1/4">
+      <form
+        onSubmit={handleSubmit}
+        id="login-form"
+        className="flex flex-col w-lg"
+      >
+        <HomeBtn />
         <Title title="login" />
+        <EmptyChatRow />
         <FormControl
           ref={usernameInputRef}
           type="text"
           id="username"
           value={username}
           fn={handeUsernameChange}
-          label="username"
+          label="login"
+          placeholder="username"
         />
         <FormControl
           type="password"
           id="password"
           value={password}
           fn={handlePasswordChange}
-          label="password"
+          placeholder="password"
         />
-        <ErrorMessage />
         <div className="mt-auto">
-          <PrimaryButton type="submit" text="log in" icon="→" />
+          <EmptyChatRow />
+          <EmptyChatRow />
+          <EmptyChatRow />
+          <EmptyChatRow />
+          <PrimaryButton
+            type="submit"
+            formId="login-form"
+            text="log in"
+            icon="→"
+          />
+
           <SecondaryButton text="no account?" cta=" sign up" to="/register" />
+          <MessageLogger />
         </div>
       </form>
     </div>

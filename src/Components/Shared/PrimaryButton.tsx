@@ -1,11 +1,18 @@
 import type { ButtonProps } from "../../Models/Button.model";
 
-const PrimaryButton = ({ type, fn, text, icon }: ButtonProps) => {
+const PrimaryButton = ({
+  type = "submit",
+  fn,
+  formId,
+  text,
+  icon,
+}: ButtonProps) => {
   return (
     <button
-      onClick={fn}
+      form={formId || undefined}
+      onClick={fn || undefined}
       type={type}
-      className="w-full group mt-5 font-mono uppercase outline-0 text-left cursor-pointer"
+      className="w-1/2 group font-mono uppercase outline-0 text-left cursor-pointer"
     >
       <span className="text-gray-500 group-focus-within:text-secondary group-hover:text-secondary">
         $
