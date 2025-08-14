@@ -27,6 +27,7 @@ const HomePage = () => {
         <EmptyChatRow />
         <EmptyChatRow />
         <EmptyChatRow />
+        <EmptyChatRow />
         <Link to={"/login"} className="outline-0 ">
           <Button type="button" text="log in" icon="→" />
         </Link>
