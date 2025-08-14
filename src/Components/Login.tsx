@@ -1,16 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import SecondaryButton from "./Shared/SecondaryButton";
 import PrimaryButton from "./Shared/PrimaryButton";
+import Title from "./Shared/Title";
+import FormControl from "./Shared/FormControl";
+import ErrorMessage from "./Shared/ErrorMessage";
 
 const Login = () => {
-  const { login, loggedIn } = useAuth();
+  const { login, loggedIn, setErrorMessage } = useAuth();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setErrorMessage("");
+  }, []);
+
+  useEffect(() => {
+    if (usernameInputRef.current) {
+      usernameInputRef.current.focus();
+    }
+  }, []);
 
   useEffect(() => {
     if (loggedIn === true) {
@@ -34,33 +47,57 @@ const Login = () => {
     setUsername(e.target.value);
   };
 
+  const usernameInputRef = useRef<HTMLInputElement>(null);
+
   return (
     <div className="w-full flex place-content-center">
-      <form onSubmit={handleSubmit} className="flex flex-col w-1/4">
-        <label htmlFor="username">Username:</label>
-        <input
-          required
-          value={username}
-          onChange={handeUsernameChange}
-          id="username"
+      <form onSubmit={handleSubmit} className="flex flex-col h-80  w-1/4">
+        <Title title="login" />
+        <FormControl
+          ref={usernameInputRef}
           type="text"
-          autoComplete="username"
-          className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-secondary outline-none"
+          id="username"
+          value={username}
+          fn={handeUsernameChange}
+          label="username"
         />
-        <label htmlFor="password">Password:</label>
-        <input
-          required
-          value={password}
-          onChange={handlePasswordChange}
-          id="password"
+        <FormControl
           type="password"
-          autoComplete="current-password"
-          className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-secondary outline-none"
+          id="password"
+          value={password}
+          fn={handlePasswordChange}
+          label="password"
         />
-        <PrimaryButton type="submit" text="log in" icon="→" />
-        <SecondaryButton text="no account?" cta=" sign up" to="/register" />
+        <ErrorMessage />
+        <div className="mt-auto">
+          <PrimaryButton type="submit" text="log in" icon="→" />
+          <SecondaryButton text="no account?" cta=" sign up" to="/register" />
+        </div>
       </form>
     </div>
   );
 };
 export default Login;
+
+{
+  /* <label htmlFor="username">Username:</label>
+<input
+  required
+  value={username}
+  onChange={handeUsernameChange}
+  id="username"
+  type="text"
+  autoComplete="username"
+  className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-secondary outline-none"
+/>
+<label htmlFor="password">Password:</label>
+<input
+  required
+  value={password}
+  onChange={handlePasswordChange}
+  id="password"
+  type="password"
+  autoComplete="current-password"
+  className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-secondary outline-none"
+/> */
+}

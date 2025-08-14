@@ -4,6 +4,7 @@
   --color-primary: #ff9500;
   --color-secondary: #00e5ff;
   --color-text-primary: #e6e6e6;
+  --color-app-name: #00ff99;
 }
 
 body {
@@ -18,11 +19,10 @@ body {
 input {
   caret-color: #ff9500;
   outline: none;
+  /* color: #00e5ff !important;
+  color: #00ff99 !important;
+  color: #ffcc00 !important;
+  color: #ff0080 !important;
+  color: #aa88ff !important;
+  color: #ff9500 !important; */
 }
-
-/* color: #00e5ff !important;
-color: #00ff99 !important;
-color: #ffcc00 !important;
-color: #ff0080 !important;
-color: #aa88ff !important;
-color: #ff9500 !important; */

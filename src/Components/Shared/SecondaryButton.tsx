@@ -13,7 +13,7 @@ const SecondaryButton = ({ text, cta, to }: SecondaryButtonProps) => {
       &nbsp;
       <button className="group w-full text-gray-500 outline-0 cursor-pointer text-left">
         {text}{" "}
-        <span className="group-hover:text-primary text-gray-400 group-focus:text-primary">
+        <span className="group-hover:text-primary text-text-primary group-focus:text-primary">
           {cta}
         </span>
       </button>

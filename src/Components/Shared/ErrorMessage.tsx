@@ -17,9 +17,9 @@ const ErrorMessage = () => {
   if (errorMessage)
     return (
       <>
-        <div className="flex">
-          <span className="text-red-500">$</span>&nbsp;
-          <span className=""> {errorMessage}</span>
+        <div className="flex mt-5">
+          <span className="text-secondary">$</span>&nbsp;
+          <span className="text-red-500"> {errorMessage}</span>
         </div>
       </>
     );

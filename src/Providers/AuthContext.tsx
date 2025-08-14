@@ -58,9 +58,7 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
 
       if (!response.ok) {
         setErrorMessage(result.error);
-        setTimeout(() => {
-          setErrorMessage("");
-        }, 5000);
+
         throw new Error(result.error || `Response status: ${response.status}`);
       }
       setRegistered(true);
@@ -96,9 +94,7 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
 
       if (!response.ok) {
         setErrorMessage(result.error);
-        setTimeout(() => {
-          setErrorMessage("");
-        }, 5000);
+
         throw new Error(result.error || `Response status: ${response.status}`);
       }
 

@@ -7,10 +7,15 @@ import SecondaryButton from "./Shared/SecondaryButton";
 import PrimaryButton from "./Shared/PrimaryButton";
 import FormControl from "./Shared/FormControl";
 import ErrorMessage from "./Shared/ErrorMessage";
+import Title from "./Shared/Title";
 
 const Register = () => {
   const { register, setErrorMessage, registered, setRegistered } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setErrorMessage("");
+  }, []);
 
   const [repeatPassword, setRepeatPassword] = useState("");
   const [formData, setFormData] = useState<RegisterBody>({
@@ -66,7 +71,8 @@ const Register = () => {
 
   return (
     <div className="w-full flex place-content-center">
-      <form onSubmit={handleSubmit} className="flex flex-col w-1/4">
+      <form onSubmit={handleSubmit} className="flex flex-col h-80 w-1/4 ">
+        <Title title="register" />
         <FormControl
           ref={usernameInputRef}
           type="text"
@@ -96,11 +102,17 @@ const Register = () => {
           fn={handleEmailChange}
           label="email"
         />
-
-        <PrimaryButton type="submit" text="sign up" icon="→" />
-
-        <SecondaryButton text="already signed up?" cta=" log in" to="/login" />
         <ErrorMessage />
+
+        <div className="mt-auto">
+          <PrimaryButton type="submit" text="sign up" icon="→" />
+
+          <SecondaryButton
+            text="already signed up?"
+            cta=" log in"
+            to="/login"
+          />
+        </div>
       </form>
     </div>
   );
