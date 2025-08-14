@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import type { SecondaryButtonType } from "../../Models/SecondaryButton.model";
+import type { SecondaryButtonProps } from "../../Models/SecondaryButton.model";
 
-const SecondaryButton = ({ text, cta, to }: SecondaryButtonType) => {
+const SecondaryButton = ({ text, cta, to }: SecondaryButtonProps) => {
   return (
     <Link
       to={to}
