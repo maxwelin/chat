@@ -5,6 +5,8 @@
   --color-secondary: #00e5ff;
   --color-text-primary: #e6e6e6;
   --color-app-name: #00ff99;
+  --color-app-color: #ff0080;
+  --color-app-timestamp: #aa88ff;
 }
 
 body {

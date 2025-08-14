@@ -8,6 +8,7 @@ import FormControl from "./Shared/FormControl";
 import HomeBtn from "./Shared/HomeButton";
 import MessageLogger from "./Shared/MessageLogger";
 import EmptyChatRow from "./Shared/EmptyChatRow";
+import ChatMessage from "./Shared/ChatMessage";
 
 const Login = () => {
   const { login, loggedIn, setErrorMessage } = useAuth();
@@ -60,6 +61,8 @@ const Login = () => {
       >
         <HomeBtn />
         <Title title="login" />
+        <EmptyChatRow />
+        <ChatMessage from="room_404" message="login to continue" />
         <EmptyChatRow />
         <FormControl
           ref={usernameInputRef}

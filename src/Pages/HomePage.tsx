@@ -3,6 +3,7 @@ import Button from "../Components/Shared/PrimaryButton";
 import SecondaryButton from "../Components/Shared/SecondaryButton";
 import Title from "../Components/Shared/Title";
 import EmptyChatRow from "../Components/Shared/EmptyChatRow";
+import ChatMessage from "../Components/Shared/ChatMessage";
 
 const SUB_HEADER = "log in to start chatting";
 
@@ -13,13 +14,16 @@ const HomePage = () => {
         <EmptyChatRow />
         <Title title="home" />
         <EmptyChatRow />
-        <h1 className="py-1">
-          <span className="text-text-primary">$ welcome</span>
-        </h1>
+        <ChatMessage
+          from="room_404"
+          message="user connected"
+          color="green-500"
+        />
+        <ChatMessage from="room_404" message="welcome" />
+        <EmptyChatRow />
         <h1 className="py-1">
           <span className="text-gray-500">$ {SUB_HEADER}</span>
         </h1>
-        <EmptyChatRow />
         <EmptyChatRow />
         <EmptyChatRow />
         <EmptyChatRow />

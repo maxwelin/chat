@@ -10,6 +10,7 @@ import Title from "./Shared/Title";
 import HomeBtn from "./Shared/HomeButton";
 import MessageLogger from "./Shared/MessageLogger";
 import EmptyChatRow from "./Shared/EmptyChatRow";
+import ChatMessage from "./Shared/ChatMessage";
 
 const Register = () => {
   const { register, setErrorMessage, registered, setRegistered } = useAuth();
@@ -79,6 +80,8 @@ const Register = () => {
       <form onSubmit={handleSubmit} className="flex flex-col w-lg">
         <HomeBtn />
         <Title title="register" />
+        <EmptyChatRow />
+        <ChatMessage from="room_404" message="enter your information" />
         <EmptyChatRow />
         <FormControl
           ref={usernameInputRef}
