@@ -5,6 +5,7 @@ import EmptyChatRow from "./Shared/EmptyChatRow";
 import HomeBtn from "./Shared/HomeButton";
 import PrimaryButton from "./Shared/PrimaryButton";
 import useStagger from "../Hooks/useStagger";
+import ChatMessage from "./Shared/ChatMessage";
 
 const Chat = () => {
   const { logout, decodedJwt } = useAuth();
@@ -30,21 +31,27 @@ const Chat = () => {
       <span className="text-primary">{user}</span>
     </h1>,
     <EmptyChatRow key={2} />,
-    <h1 key={3}>
+    <ChatMessage
+      from="room_404"
+      message={`${user} connected`}
+      color="green-500"
+      key={3}
+    />,
+    <h1 key={4}>
       <span className="text-[#aa88ff] py-1 ">
         <span className="text-gray-500">$</span>
         &nbsp;{timeStamp}
         <span className="text-text-primary"> welcome {user}</span>
       </span>
     </h1>,
-    <EmptyChatRow key={4} />,
+    <EmptyChatRow key={5} />,
 
     <PrimaryButton
       type="button"
       fn={handleLogOut}
       text="log out"
       icon="→"
-      key={5}
+      key={6}
     />,
   ];
 
