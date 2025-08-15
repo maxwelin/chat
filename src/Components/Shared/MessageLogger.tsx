@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useAuth } from "../../Hooks/useAuth";
-import EmptyChatRow from "./EmptyChatRow";
 
 const MessageLogger = () => {
   const { errorMessage, setErrorMessage, successMessage, setSuccessMessage } =
@@ -19,7 +18,7 @@ const MessageLogger = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setSuccessMessage("");
-    }, 3000);
+    }, 1500);
 
     return () => {
       clearTimeout(timeout);
@@ -29,7 +28,10 @@ const MessageLogger = () => {
   if (errorMessage)
     return (
       <>
-        <span className="text-red-500">$ ERROR</span>
+        <div className="flex">
+          <span className="text-text-primary">!</span>&nbsp;
+          <span className="text-red-500"> ERROR</span>
+        </div>
         <div className="flex">
           <span className="text-text-primary">&gt;</span>&nbsp;
           <span className="text-red-500"> {errorMessage}</span>
@@ -39,9 +41,13 @@ const MessageLogger = () => {
   else if (successMessage)
     return (
       <>
-        <EmptyChatRow />
         <div className="flex">
-          <span className="text-green-500">$ {successMessage}</span>
+          <span className="text-text-primary">$</span>&nbsp;
+          <span className="text-green-500">succes</span>
+        </div>
+        <div className="flex">
+          <span className="text-text-primary">&gt;</span>&nbsp;
+          <span className="text-green-500">{successMessage}</span>
         </div>
       </>
     );

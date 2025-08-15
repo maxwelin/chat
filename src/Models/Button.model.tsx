@@ -3,5 +3,5 @@ export interface ButtonProps {
   fn?: () => void;
   formId?: string;
   text: string;
-  icon: string;
+  icon?: string;
 }

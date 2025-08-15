@@ -24,6 +24,10 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
   });
 
   useEffect(() => {
+    getLocalStorage();
+  }, []);
+
+  useEffect(() => {
     fetchCsrfToken();
   }, []);
 
@@ -70,15 +74,30 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
 
   const logout = () => {
     sessionStorage.clear();
+    localStorage.clear();
     setLoggedIn(false);
   };
 
-  const setJWT = (token: string) => {
-    sessionStorage.setItem("jwt", token);
-
-    const decodedJwt = JSON.parse(atob(token.split(".")[1]));
-
+  const setLocalStorage = (token: string) => {
+    const decodedJwt = decodeJwt(token);
     setDecodedJwt(decodedJwt);
+    localStorage.setItem("jwt", token);
+    localStorage.setItem("decodedJwt", JSON.stringify(decodedJwt));
+    localStorage.setItem("loggedIn", JSON.stringify(true));
+  };
+
+  const getLocalStorage = () => {
+    const token = JSON.parse(localStorage.getItem("decodedJwt")!);
+    const isLoggedIn = JSON.parse(localStorage.getItem("loggedIn")!);
+
+    if (token && isLoggedIn) {
+      setLoggedIn(isLoggedIn);
+      setDecodedJwt(token);
+    }
+  };
+
+  const decodeJwt = (token: string) => {
+    return JSON.parse(atob(token.split(".")[1]));
   };
 
   const login = async (body: LoginBody) => {
@@ -99,8 +118,8 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
         throw new Error(result.error || `Response status: ${response.status}`);
       }
 
-      setJWT(result.token);
       setLoggedIn(true);
+      setLocalStorage(result.token);
     } catch (error) {
       console.error(error);
     }

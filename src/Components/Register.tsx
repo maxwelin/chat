@@ -37,8 +37,10 @@ const Register = () => {
 
   useEffect(() => {
     if (registered === true) {
-      navigate("/login");
-      setRegistered(false);
+      setTimeout(() => {
+        navigate("/login");
+        setRegistered(false);
+      }, 1500);
     }
   }, [registered, navigate, setRegistered]);
 

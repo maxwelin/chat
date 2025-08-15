@@ -10,7 +10,7 @@ const HomeBtn = () => {
         <>
           <Link
             to={"/chat"}
-            className="w-1/2 group py-1 outline-0 flex group-focus:text-secondary group-hover:text-secondary text-gray-500"
+            className="w-1/2 group py-1 outline-0 flex group-focus:text-secondary group-hover:text-secondary text-gray-400"
           >
             <span className="group-focus:text-secondary group-hover:text-secondary">
               ${" "}
@@ -18,7 +18,7 @@ const HomeBtn = () => {
             &nbsp;
             <button
               type="button"
-              className="group group-hover:text-text-primary w-full text-gray-500 outline-0 cursor-pointer text-left"
+              className="group group-hover:text-text-primary w-full text-gray-400 outline-0 cursor-pointer text-left"
             >
               HOME{" "}
             </button>
@@ -28,7 +28,7 @@ const HomeBtn = () => {
         <>
           <Link
             to={"/"}
-            className="w-1/2 group py-1 outline-0 flex group-focus:text-secondary group-hover:text-secondary text-gray-500"
+            className="w-1/2 group py-1 outline-0 flex group-focus:text-secondary group-hover:text-secondary text-gray-400"
           >
             <span className="group-focus:text-secondary group-hover:text-secondary">
               ${" "}

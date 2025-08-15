@@ -5,7 +5,7 @@ const PrimaryButton = ({
   fn,
   formId,
   text,
-  icon,
+  icon = "→",
 }: ButtonProps) => {
   return (
     <button
@@ -14,7 +14,7 @@ const PrimaryButton = ({
       type={type}
       className="w-1/2 group font-mono uppercase outline-0 text-left cursor-pointer"
     >
-      <span className="text-gray-500 group-focus-within:text-secondary group-hover:text-secondary">
+      <span className="text-gray-400 group-focus-within:text-secondary group-hover:text-secondary">
         $
       </span>{" "}
       {text}{" "}

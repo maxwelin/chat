@@ -6,7 +6,9 @@ import EmptyChatRow from "../Components/Shared/EmptyChatRow";
 import ChatMessage from "../Components/Shared/ChatMessage";
 import { useState } from "react";
 import useStagger from "../Hooks/useStagger";
+import LogMessage from "../Components/Shared/LogMessage";
 
+const HEADER = "user connected";
 const SUB_HEADER = "log in to start chatting";
 
 const HomePage = () => {
@@ -14,18 +16,11 @@ const HomePage = () => {
     <EmptyChatRow key={0} />,
     <Title title="home" key={1} />,
     <EmptyChatRow key={2} />,
-    <ChatMessage
-      from="room_404"
-      message="user connected"
-      color="green-500"
-      key={3}
-    />,
+    <LogMessage key={3} message={HEADER} />,
     <ChatMessage from="room_404" message="welcome" key={4} />,
     <EmptyChatRow key={5} />,
-    <p className="py-1" key={6}>
-      <span className="text-gray-500">$ {SUB_HEADER}</span>
-    </p>,
-    <EmptyChatRow key={7} />,
+    <EmptyChatRow key={6} />,
+    <ChatMessage from="room_404" message={SUB_HEADER} key={7} />,
     <EmptyChatRow key={8} />,
     <EmptyChatRow key={9} />,
     <EmptyChatRow key={10} />,
@@ -44,9 +39,11 @@ const HomePage = () => {
 
   useStagger(count, setCount, components, 500);
 
+  // const isLast = components.length === count;
+
   return (
     <div className="w-full flex place-content-center pt-10">
-      <div className="flex flex-col w-lg">{components.slice(0, count)}</div>
+      <div className="flex flex-col w-lg ">{components.slice(0, count)}</div>
     </div>
   );
 };

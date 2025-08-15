@@ -15,7 +15,7 @@ const FormControl = ({
         htmlFor="password"
         className="text-text-primary py-1 min-w-[100px] flex justify-between"
       >
-        <span className="text-gray-500 group-focus-within:text-secondary">
+        <span className="text-gray-400 group-focus-within:text-secondary">
           {label ? <>$</> : <>&gt;</>}
         </span>
         <span className="text-text-primar">{label}/</span>
