@@ -4,6 +4,7 @@ import { useAuth } from "../Hooks/useAuth";
 import EmptyChatRow from "./Shared/EmptyChatRow";
 import HomeBtn from "./Shared/HomeButton";
 import PrimaryButton from "./Shared/PrimaryButton";
+import useStagger from "../Hooks/useStagger";
 
 const Chat = () => {
   const { logout, decodedJwt } = useAuth();
@@ -18,28 +19,37 @@ const Chat = () => {
   const handleLogOut = () => {
     logout();
   };
-  return (
-    <>
-      <HomeBtn />
 
-      <h1 className="w-1/2 py-1 border-b-2 border-dashed border-gray-600">
-        <span className="text-gray-500">$</span>{" "}
-        <span className="text-app-name">room_404</span>/
-        <span className="text-[#ff0080]">users</span>/
-        <span className="text-primary">{user}</span>
-      </h1>
-      <EmptyChatRow />
-      <h1>
-        <span className="text-[#aa88ff] py-1 ">
-          <span className="text-gray-500">$</span>
-          &nbsp;{timeStamp}
-          <span className="text-text-primary"> welcome {user}</span>
-        </span>
-      </h1>
-      <EmptyChatRow />
+  const components = [
+    <HomeBtn key={0} />,
 
-      <PrimaryButton type="button" fn={handleLogOut} text="log out" icon="→" />
-    </>
-  );
+    <h1 key={1} className="w-1/2 py-1 border-b-2 border-dashed border-gray-600">
+      <span className="text-gray-500">$</span>{" "}
+      <span className="text-app-name">room_404</span>/
+      <span className="text-[#ff0080]">users</span>/
+      <span className="text-primary">{user}</span>
+    </h1>,
+    <EmptyChatRow key={2} />,
+    <h1 key={3}>
+      <span className="text-[#aa88ff] py-1 ">
+        <span className="text-gray-500">$</span>
+        &nbsp;{timeStamp}
+        <span className="text-text-primary"> welcome {user}</span>
+      </span>
+    </h1>,
+    <EmptyChatRow key={4} />,
+
+    <PrimaryButton
+      type="button"
+      fn={handleLogOut}
+      text="log out"
+      icon="→"
+      key={5}
+    />,
+  ];
+
+  const [count, setCount] = useState(0);
+  useStagger(count, setCount, components);
+  return <>{components.slice(0, count)}</>;
 };
 export default Chat;

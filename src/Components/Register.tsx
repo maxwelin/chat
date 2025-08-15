@@ -11,6 +11,7 @@ import HomeBtn from "./Shared/HomeButton";
 import MessageLogger from "./Shared/MessageLogger";
 import EmptyChatRow from "./Shared/EmptyChatRow";
 import ChatMessage from "./Shared/ChatMessage";
+import useStagger from "../Hooks/useStagger";
 
 const Register = () => {
   const { register, setErrorMessage, registered, setRegistered } = useAuth();
@@ -72,52 +73,68 @@ const Register = () => {
       avatar: "",
     });
   };
-
   const usernameInputRef = useRef<HTMLInputElement>(null);
+
+  const components = [
+    <HomeBtn key={0} />,
+    <Title title="register" key={1} />,
+    <EmptyChatRow key={2} />,
+    <ChatMessage from="room_404" message="enter your information" key={3} />,
+    <EmptyChatRow key={4} />,
+    <FormControl
+      ref={usernameInputRef}
+      type="text"
+      id="username"
+      value={formData.username}
+      fn={handleUsernameChange}
+      label="register"
+      placeholder="username"
+      key={5}
+    />,
+    <FormControl
+      type="password"
+      id="password"
+      value={formData.password}
+      fn={handlePasswordChange}
+      placeholder="password"
+      key={6}
+    />,
+    <FormControl
+      type="password"
+      id="repeatPassword"
+      value={repeatPassword}
+      fn={handleRepeatPasswordChange}
+      placeholder="password"
+      key={7}
+    />,
+    <FormControl
+      type="email"
+      id="email"
+      value={formData.email}
+      fn={handleEmailChange}
+      placeholder="email"
+      key={8}
+    />,
+    <EmptyChatRow key={9} />,
+    <EmptyChatRow key={10} />,
+    <PrimaryButton type="submit" text="sign up" icon="→" key={11} />,
+    <SecondaryButton
+      text="already signed up?"
+      cta=" log in"
+      to="/login"
+      key={12}
+    />,
+    <MessageLogger key={13} />,
+  ];
+
+  const [count, setCount] = useState(0);
+
+  useStagger(count, setCount, components);
 
   return (
     <div className="w-full flex place-content-center ">
       <form onSubmit={handleSubmit} className="flex flex-col w-lg">
-        <HomeBtn />
-        <Title title="register" />
-        <EmptyChatRow />
-        <ChatMessage from="room_404" message="enter your information" />
-        <EmptyChatRow />
-        <FormControl
-          ref={usernameInputRef}
-          type="text"
-          id="username"
-          value={formData.username}
-          fn={handleUsernameChange}
-          label="register"
-          placeholder="username"
-        />
-        <FormControl
-          type="password"
-          id="password"
-          value={formData.password}
-          fn={handlePasswordChange}
-          placeholder="password"
-        />
-        <FormControl
-          type="password"
-          id="repeatPassword"
-          value={repeatPassword}
-          fn={handleRepeatPasswordChange}
-          placeholder="password"
-        />
-        <FormControl
-          type="email"
-          id="email"
-          value={formData.email}
-          fn={handleEmailChange}
-          placeholder="email"
-        />
-        <EmptyChatRow />
-        <EmptyChatRow />
-        <PrimaryButton type="submit" text="sign up" icon="→" />
-        <SecondaryButton text="already signed up?" cta=" log in" to="/login" />
-        <MessageLogger />
+        {components.slice(0, count)}
       </form>
     </div>
   );

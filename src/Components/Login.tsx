@@ -9,6 +9,7 @@ import HomeBtn from "./Shared/HomeButton";
 import MessageLogger from "./Shared/MessageLogger";
 import EmptyChatRow from "./Shared/EmptyChatRow";
 import ChatMessage from "./Shared/ChatMessage";
+import useStagger from "../Hooks/useStagger";
 
 const Login = () => {
   const { login, loggedIn, setErrorMessage } = useAuth();
@@ -52,6 +53,55 @@ const Login = () => {
 
   const usernameInputRef = useRef<HTMLInputElement>(null);
 
+  const components = [
+    <HomeBtn key={0} />,
+    <Title title="login" key={1} />,
+    <EmptyChatRow key={2} />,
+    <ChatMessage from="room_404" message="login to continue" key={33} />,
+    <EmptyChatRow key={4} />,
+    <FormControl
+      ref={usernameInputRef}
+      type="text"
+      id="username"
+      value={username}
+      fn={handeUsernameChange}
+      label="login"
+      placeholder="username"
+      key={5}
+    />,
+    <FormControl
+      type="password"
+      id="password"
+      value={password}
+      fn={handlePasswordChange}
+      placeholder="password"
+      key={6}
+    />,
+    <EmptyChatRow key={7} />,
+    <EmptyChatRow key={8} />,
+    <EmptyChatRow key={9} />,
+    <EmptyChatRow key={10} />,
+    <PrimaryButton
+      type="submit"
+      formId="login-form"
+      text="log in"
+      icon="→"
+      key={11}
+    />,
+
+    <SecondaryButton
+      text="no account?"
+      cta=" sign up"
+      to="/register"
+      key={12}
+    />,
+    <MessageLogger key={13} />,
+  ];
+
+  const [count, setCount] = useState(0);
+
+  useStagger(count, setCount, components);
+
   return (
     <div className="w-full flex place-content-center">
       <form
@@ -59,42 +109,7 @@ const Login = () => {
         id="login-form"
         className="flex flex-col w-lg"
       >
-        <HomeBtn />
-        <Title title="login" />
-        <EmptyChatRow />
-        <ChatMessage from="room_404" message="login to continue" />
-        <EmptyChatRow />
-        <FormControl
-          ref={usernameInputRef}
-          type="text"
-          id="username"
-          value={username}
-          fn={handeUsernameChange}
-          label="login"
-          placeholder="username"
-        />
-        <FormControl
-          type="password"
-          id="password"
-          value={password}
-          fn={handlePasswordChange}
-          placeholder="password"
-        />
-        <div className="mt-auto">
-          <EmptyChatRow />
-          <EmptyChatRow />
-          <EmptyChatRow />
-          <EmptyChatRow />
-          <PrimaryButton
-            type="submit"
-            formId="login-form"
-            text="log in"
-            icon="→"
-          />
-
-          <SecondaryButton text="no account?" cta=" sign up" to="/register" />
-          <MessageLogger />
-        </div>
+        {components.slice(0, count)}
       </form>
     </div>
   );
