@@ -5,7 +5,7 @@ const PrimaryButton = ({
   fn,
   formId,
   text,
-  icon = "→",
+  icon = ">",
 }: ButtonProps) => {
   return (
     <button
@@ -18,7 +18,7 @@ const PrimaryButton = ({
         $
       </span>{" "}
       {text}{" "}
-      <span className="inline-block transition-transform duration-30 text-primary group-focus:translate-x-3 group-hover:translate-x-3">
+      <span className="inline-block lowercase transition-transform duration-30 text-primary group-focus:translate-x-3 group-hover:translate-x-3">
         {icon}
       </span>
     </button>

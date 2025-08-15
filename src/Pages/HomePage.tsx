@@ -25,7 +25,7 @@ const HomePage = () => {
     <EmptyChatRow key={9} />,
     <EmptyChatRow key={10} />,
     <Link to={"/login"} className="outline-0 " key={11}>
-      <Button type="button" text="log in" icon="→" />
+      <Button type="button" text="log in" />
     </Link>,
     <SecondaryButton
       text="no account?"

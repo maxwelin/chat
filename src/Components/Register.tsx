@@ -119,7 +119,7 @@ const Register = () => {
     />,
     <EmptyChatRow key={9} />,
     <EmptyChatRow key={10} />,
-    <PrimaryButton type="submit" text="sign up" icon="→" key={11} />,
+    <PrimaryButton type="submit" text="sign up" key={11} />,
     <SecondaryButton
       text="already signed up?"
       cta=" log in"

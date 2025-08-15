@@ -81,13 +81,7 @@ const Login = () => {
     <EmptyChatRow key={8} />,
     <EmptyChatRow key={9} />,
     <EmptyChatRow key={10} />,
-    <PrimaryButton
-      type="submit"
-      formId="login-form"
-      text="log in"
-      icon="→"
-      key={11}
-    />,
+    <PrimaryButton type="submit" formId="login-form" text="log in" key={11} />,
 
     <SecondaryButton
       text="no account?"
