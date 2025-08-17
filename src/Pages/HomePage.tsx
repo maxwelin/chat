@@ -37,7 +37,7 @@ const HomePage = () => {
 
   const [count, setCount] = useState(0);
 
-  useStagger(count, setCount, components, 500);
+  useStagger(count, setCount, components);
 
   // const isLast = components.length === count;
 

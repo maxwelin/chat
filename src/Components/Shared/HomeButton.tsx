@@ -20,7 +20,7 @@ const HomeBtn = () => {
               type="button"
               className="group group-hover:text-text-primary w-full text-gray-400 outline-0 cursor-pointer text-left"
             >
-              HOME{" "}
+              &lt; HOME{" "}
             </button>
           </Link>
         </>
@@ -38,7 +38,7 @@ const HomeBtn = () => {
               type="button"
               className="group text-text-primary w-full outline-0 cursor-pointer text-left"
             >
-              HOME{" "}
+              <span className="text-primary">&lt;</span> HOME{" "}
             </button>
           </Link>
         </>

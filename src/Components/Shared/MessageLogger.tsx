@@ -34,7 +34,7 @@ const MessageLogger = () => {
         </div>
         <div className="flex">
           <span className="text-text-primary">&gt;</span>&nbsp;
-          <span className="text-red-500"> {errorMessage}</span>
+          <span className="text-red-500 lowercase"> {errorMessage}</span>
         </div>
       </>
     );
@@ -43,11 +43,11 @@ const MessageLogger = () => {
       <>
         <div className="flex">
           <span className="text-text-primary">$</span>&nbsp;
-          <span className="text-green-500">succes</span>
+          <span className="text-green-500">success</span>
         </div>
         <div className="flex">
           <span className="text-text-primary">&gt;</span>&nbsp;
-          <span className="text-green-500">{successMessage}</span>
+          <span className="text-green-500 lowercase">{successMessage}</span>
         </div>
       </>
     );

@@ -30,7 +30,7 @@ const SideNavContent = () => {
   ];
 
   const [count, setCount] = useState(0);
-  useStagger(count, setCount, components, 600);
+  useStagger(count, setCount, components);
   return <>{components.slice(0, count)}</>;
 };
 export default SideNavContent;
