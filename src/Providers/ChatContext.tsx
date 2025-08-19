@@ -39,7 +39,7 @@ const ChatContextProvider: React.FC<ProviderProps> = ({ children }) => {
       console.log(data);
       setConversations(data);
     } catch (error) {
-      console.error("Could not retrieve chat messages: " + error);
+      console.error("Could not retrieve conversations: " + error);
     }
   };
 

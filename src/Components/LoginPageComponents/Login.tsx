@@ -59,9 +59,9 @@ const Login = () => {
   const components = [
     <HomeBtn key={0} />,
     <Title title="login" key={1} />,
-    <EmptyChatRow key={2} />,
-    <ChatMessage from="room_404" message="login to continue" key={33} />,
+    <ChatMessage from="room_404" message="login to continue" key={2} />,
     <EmptyChatRow key={4} />,
+    <EmptyChatRow key={7} />,
     <FormControl
       ref={usernameInputRef}
       type="text"
@@ -80,10 +80,8 @@ const Login = () => {
       placeholder="password"
       key={6}
     />,
-    <EmptyChatRow key={7} />,
     <EmptyChatRow key={8} />,
     <EmptyChatRow key={9} />,
-    <EmptyChatRow key={10} />,
     <PrimaryButton type="submit" formId="login-form" text="log in" key={11} />,
 
     <SecondaryButton

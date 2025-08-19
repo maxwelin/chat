@@ -2,6 +2,7 @@ import type { ChangeEvent, RefObject } from "react";
 
 export interface FormControlType {
   ref?: RefObject<null | HTMLInputElement>;
+  required?: boolean;
   type: string;
   id: string;
   value: string;

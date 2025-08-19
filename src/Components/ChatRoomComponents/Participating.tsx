@@ -16,6 +16,7 @@ const components = [
   <ChatMessage from="room_404" message="loading active chatrooms" key={2} />,
   <EmptyChatRow key={3} />,
   <EmptyChatRow key={4} />,
+  <EmptyChatRow key={7} />,
   <LogMessage message="chatrooms loaded" key={5} />,
   <ChatMessage
     from="room_404"
@@ -40,7 +41,7 @@ const Participating = ({ array }: Participating) => {
                 <span className="text-secondary">&nbsp;room&nbsp;{i + 1}</span>
                 :&nbsp;
               </span>
-              <span key={i + components.length}>{item}</span>
+              <span key={i + components.length + 1}>{item}</span>
             </div>
           ))}
         </div>

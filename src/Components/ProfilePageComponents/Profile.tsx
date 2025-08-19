@@ -32,10 +32,10 @@ const Profile = () => {
     <EmptyChatRow key={0} />,
 
     <ProfilePath path="profile" key={1} />,
-    <EmptyChatRow key={2} />,
     <LogMessage message={user + " connected"} key={3} />,
     <ChatMessage from="room_404" message={`welcome ${user}`} key={4} />,
 
+    <EmptyChatRow key={2} />,
     <EmptyChatRow key={5} />,
     <EmptyChatRow key={6} />,
     <PrimaryButton

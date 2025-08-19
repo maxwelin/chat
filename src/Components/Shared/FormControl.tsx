@@ -5,6 +5,7 @@ const FormControl = ({
   type,
   id,
   value,
+  required,
   fn,
   label,
   placeholder,
@@ -22,15 +23,15 @@ const FormControl = ({
       </label>
       <input
         ref={ref}
-        required
         value={value}
+        required={required}
         onChange={fn}
         name={id}
         id={id}
         placeholder={placeholder}
         type={type}
         autoComplete="off"
-        className="py-1 px-2 text-gray-400 outline-none"
+        className="py-1 px-2 text-gray-400 outline-none w-full"
       />
     </div>
   );

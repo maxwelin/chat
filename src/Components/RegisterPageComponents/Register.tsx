@@ -62,6 +62,10 @@ const Register = () => {
     setFormData({ ...formData, email: e.target.value });
   };
 
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, avatar: e.target.value });
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (formData.password !== repeatPassword) {
@@ -80,13 +84,19 @@ const Register = () => {
   const components = [
     <HomeBtn key={0} />,
     <Title title="register" key={1} />,
-    <EmptyChatRow key={2} />,
-    <ChatMessage from="room_404" message="enter your information" key={3} />,
+    <ChatMessage from="room_404" message="enter your information" key={2} />,
+    <ChatMessage
+      from="room_404"
+      message="input avatar as a freeimage.host or pravatar.cc link"
+      key={3}
+    />,
+    <EmptyChatRow key={9} />,
     <EmptyChatRow key={4} />,
     <FormControl
       ref={usernameInputRef}
       type="text"
       id="username"
+      required={true}
       value={formData.username}
       fn={handleUsernameChange}
       label="register"
@@ -94,8 +104,17 @@ const Register = () => {
       key={5}
     />,
     <FormControl
+      type="avatar"
+      id="avatar"
+      value={formData.avatar}
+      fn={handleAvatarChange}
+      placeholder="avatar (optional)"
+      key={14}
+    />,
+    <FormControl
       type="password"
       id="password"
+      required={true}
       value={formData.password}
       fn={handlePasswordChange}
       placeholder="password"
@@ -104,6 +123,7 @@ const Register = () => {
     <FormControl
       type="password"
       id="repeatPassword"
+      required={true}
       value={repeatPassword}
       fn={handleRepeatPasswordChange}
       placeholder="password"
@@ -112,13 +132,14 @@ const Register = () => {
     <FormControl
       type="email"
       id="email"
+      required={true}
       value={formData.email}
       fn={handleEmailChange}
       placeholder="email"
       key={8}
     />,
-    <EmptyChatRow key={9} />,
     <EmptyChatRow key={10} />,
+    <EmptyChatRow key={15} />,
     <PrimaryButton type="submit" text="sign up" key={11} />,
     <SecondaryButton
       text="already signed up?"

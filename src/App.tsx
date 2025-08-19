@@ -9,6 +9,7 @@ import ProfilePage from "./Pages/ProfilePage";
 import ChatPage from "./Pages/ChatPage";
 import { ChatContextProvider } from "./Providers/ChatContext";
 import ChatRoomsPage from "./Pages/ChatRoomsPage";
+import EditPage from "./Pages/EditPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/chat" element={<ChatPage />} />
                 <Route path="/chatrooms" element={<ChatRoomsPage />} />
+                <Route path="/edit" element={<EditPage />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>
