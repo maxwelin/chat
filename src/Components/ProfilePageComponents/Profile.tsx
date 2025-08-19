@@ -1,0 +1,56 @@
+import EmptyChatRow from "../Shared/EmptyChatRow";
+import useStagger from "../../Hooks/useStagger";
+import ChatMessage from "../Shared/ChatMessage";
+import { useAuth } from "../../Hooks/useAuth";
+import { useState } from "react";
+import PrimaryButton from "../Shared/PrimaryButton";
+import SideNav from "./SideNav/SideNav";
+import LogMessage from "../Shared/LogMessage";
+import { useNavigate } from "react-router-dom";
+import ProfilePath from "../Shared/ProfilePath";
+
+const Profile = () => {
+  const { decodedJwt } = useAuth();
+  const navigate = useNavigate();
+
+  const [navVisibility, setNavVisibility] = useState(false);
+
+  const toggleNav = () => {
+    setNavVisibility(!navVisibility);
+  };
+
+  const navigateToChat = () => {
+    navigate("/chat");
+  };
+
+  const navigateToChatRooms = () => {
+    navigate("/chatrooms");
+  };
+
+  const { user } = decodedJwt;
+  const components = [
+    <EmptyChatRow key={0} />,
+
+    <ProfilePath path="profile" key={1} />,
+    <EmptyChatRow key={2} />,
+    <LogMessage message={user + " connected"} key={3} />,
+    <ChatMessage from="room_404" message={`welcome ${user}`} key={4} />,
+
+    <EmptyChatRow key={5} />,
+    <EmptyChatRow key={6} />,
+    <PrimaryButton
+      key={7}
+      type="button"
+      fn={navigateToChatRooms}
+      text="select chat room"
+    />,
+    <PrimaryButton key={8} type="button" fn={navigateToChat} text="chat" />,
+    <PrimaryButton key={9} type="button" fn={toggleNav} text="settings" />,
+    <SideNav key={10} navVisibility={navVisibility} />,
+  ];
+
+  const [count, setCount] = useState(0);
+  useStagger(count, setCount, components);
+  return <>{components.slice(0, count)}</>;
+};
+export default Profile;

@@ -3,7 +3,7 @@ import { useEffect, type ReactElement } from "react";
 export default function useStagger(
   count: number,
   setCount: React.Dispatch<React.SetStateAction<number>>,
-  components: ReactElement[],
+  components: ReactElement[] | string[],
   rndMultiplier: number = 300
 ) {
   useEffect(() => {

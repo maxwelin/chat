@@ -9,7 +9,7 @@ const HomeBtn = () => {
       {loggedIn === true ? (
         <>
           <Link
-            to={"/chat"}
+            to={"/profile"}
             className="w-1/2 group py-1 outline-0 flex group-focus:text-secondary group-hover:text-secondary text-gray-400"
           >
             <span className="group-focus:text-secondary group-hover:text-secondary">
@@ -20,7 +20,7 @@ const HomeBtn = () => {
               type="button"
               className="group group-hover:text-text-primary w-full text-gray-400 outline-0 cursor-pointer text-left"
             >
-              &lt; HOME{" "}
+              &lt; PROFILE{" "}
             </button>
           </Link>
         </>

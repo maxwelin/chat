@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useAuth } from "../../Hooks/useAuth";
-import EmptyChatRow from "../Shared/EmptyChatRow";
-import PrimaryButton from "../Shared/PrimaryButton";
-import useStagger from "../../Hooks/useStagger";
-import ChatMessage from "../Shared/ChatMessage";
-import LogMessage from "../Shared/LogMessage";
+import { useAuth } from "../../../Hooks/useAuth";
+import EmptyChatRow from "../../Shared/EmptyChatRow";
+import PrimaryButton from "../../Shared/PrimaryButton";
+import useStagger from "../../../Hooks/useStagger";
+import ChatMessage from "../../Shared/ChatMessage";
+import LogMessage from "../../Shared/LogMessage";
 
 const SideNavContent = () => {
   const { decodedJwt, logout } = useAuth();

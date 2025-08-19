@@ -1,18 +1,20 @@
 import { useEffect, useRef, useState } from "react";
-import { useAuth } from "../Hooks/useAuth";
+import { useAuth } from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import SecondaryButton from "./Shared/SecondaryButton";
-import PrimaryButton from "./Shared/PrimaryButton";
-import Title from "./Shared/Title";
-import FormControl from "./Shared/FormControl";
-import HomeBtn from "./Shared/HomeButton";
-import MessageLogger from "./Shared/MessageLogger";
-import EmptyChatRow from "./Shared/EmptyChatRow";
-import ChatMessage from "./Shared/ChatMessage";
-import useStagger from "../Hooks/useStagger";
+import SecondaryButton from "../Shared/SecondaryButton";
+import PrimaryButton from "../Shared/PrimaryButton";
+import Title from "../Shared/Title";
+import FormControl from "../Shared/FormControl";
+import HomeBtn from "../Shared/HomeButton";
+import MessageLogger from "../Shared/MessageLogger";
+import EmptyChatRow from "../Shared/EmptyChatRow";
+import ChatMessage from "../Shared/ChatMessage";
+import useStagger from "../../Hooks/useStagger";
+import { useChat } from "../../Hooks/useChat";
 
 const Login = () => {
   const { login, loggedIn, setErrorMessage } = useAuth();
+  const { getConversations } = useChat();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +33,7 @@ const Login = () => {
 
   useEffect(() => {
     if (loggedIn === true) {
-      navigate("/chat");
+      navigate("/profile");
     }
   }, [loggedIn, navigate]);
 
@@ -41,6 +43,7 @@ const Login = () => {
       username: username,
       password: password,
     });
+    getConversations();
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {

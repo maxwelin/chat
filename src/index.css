@@ -8,6 +8,15 @@
   --color-app-color: #00ff99;
   --color-app-timestamp: #aa88ff;
 }
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
 
 body {
   font-family: "Press Start 2P", monospace;

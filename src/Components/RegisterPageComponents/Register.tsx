@@ -1,17 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../Hooks/useAuth";
+import { useAuth } from "../../Hooks/useAuth";
 import { useEffect, useRef, useState } from "react";
-import type { RegisterBody } from "../Models/RegisterBody.model";
-import "../index.css";
-import SecondaryButton from "./Shared/SecondaryButton";
-import PrimaryButton from "./Shared/PrimaryButton";
-import FormControl from "./Shared/FormControl";
-import Title from "./Shared/Title";
-import HomeBtn from "./Shared/HomeButton";
-import MessageLogger from "./Shared/MessageLogger";
-import EmptyChatRow from "./Shared/EmptyChatRow";
-import ChatMessage from "./Shared/ChatMessage";
-import useStagger from "../Hooks/useStagger";
+import type { RegisterBody } from "../../Models/RegisterBody.model";
+import "../../index.css";
+import SecondaryButton from "../Shared/SecondaryButton";
+import PrimaryButton from "../Shared/PrimaryButton";
+import FormControl from "../Shared/FormControl";
+import Title from "../Shared/Title";
+import HomeBtn from "../Shared/HomeButton";
+import MessageLogger from "../Shared/MessageLogger";
+import EmptyChatRow from "../Shared/EmptyChatRow";
+import ChatMessage from "../Shared/ChatMessage";
+import useStagger from "../../Hooks/useStagger";
 
 const Register = () => {
   const { register, setErrorMessage, registered, setRegistered } = useAuth();

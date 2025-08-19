@@ -13,7 +13,7 @@ const LogMessage = ({ message }: LogMessageProps) => {
   }, []);
 
   return (
-    <p className="font-mono h-[32px]">
+    <p className="font-mono min-h-[32px]">
       <span className="text-gray-400">$</span>&nbsp;
       <span className="text-app-timestamp">{timeStamp}&nbsp;</span>/
       <span className="text-app-color">app</span>
