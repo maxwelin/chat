@@ -5,7 +5,7 @@ export interface FormControlType {
   required?: boolean;
   type: string;
   id: string;
-  value: string;
+  value: string | undefined;
   fn?: (e: ChangeEvent<HTMLInputElement>) => void;
   label?: string;
   placeholder: string;

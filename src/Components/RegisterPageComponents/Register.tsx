@@ -112,6 +112,15 @@ const Register = () => {
       key={14}
     />,
     <FormControl
+      type="email"
+      id="email"
+      required={true}
+      value={formData.email}
+      fn={handleEmailChange}
+      placeholder="email"
+      key={8}
+    />,
+    <FormControl
       type="password"
       id="password"
       required={true}
@@ -126,17 +135,8 @@ const Register = () => {
       required={true}
       value={repeatPassword}
       fn={handleRepeatPasswordChange}
-      placeholder="password"
+      placeholder="repeat password"
       key={7}
-    />,
-    <FormControl
-      type="email"
-      id="email"
-      required={true}
-      value={formData.email}
-      fn={handleEmailChange}
-      placeholder="email"
-      key={8}
     />,
     <EmptyChatRow key={10} />,
     <EmptyChatRow key={15} />,

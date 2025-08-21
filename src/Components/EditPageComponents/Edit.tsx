@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useStagger from "../../Hooks/useStagger";
 import HomeBtn from "../Shared/HomeButton";
 import ChatMessage from "../Shared/ChatMessage";
@@ -6,14 +6,56 @@ import EmptyChatRow from "../Shared/EmptyChatRow";
 import PrimaryButton from "../Shared/PrimaryButton";
 import MessageLogger from "../Shared/MessageLogger";
 import { useAuth } from "../../Hooks/useAuth";
+import type { UpdatedData } from "../../Models/UpdatedData.model";
+import FormControl from "../Shared/FormControl";
 
 const Edit = () => {
-  const { decodedJwt, updateUserInfo } = useAuth()
- const { user, avatar, id } = decodedJwt
+  const { decodedJwt, updateUserInfo, fetchCsrfToken, setErrorMessage } = useAuth()
+ const { user, avatar, id, email } = decodedJwt
+
+useEffect(() => {
+  fetchCsrfToken()
+}, [])
+
+ const [password, setPassword] = useState<string | undefined>(undefined)
+   const [formData, setFormData] = useState<UpdatedData>({
+     user: undefined,
+     email: undefined,
+     avatar: undefined,
+   });
+ 
+   
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value );
+  };
+
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, user: e.target.value });
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, email: e.target.value });
+  };
+
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, avatar: e.target.value });
+  };
 
  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault()
-  updateUserInfo(id, {email: "max@ad.se"})
+  const userObject: UpdatedData = {}
+  for (const [key, value] of Object.entries(formData)) {
+    if(value) {
+      console.log(`${key}: ${value}`)
+      userObject[key as keyof UpdatedData] = value
+    }
+  }
+  if(JSON.stringify(userObject) === '{}') {
+    setErrorMessage("no changes detected")
+    return
+  }
+  console.log(id, userObject)
+  updateUserInfo(id, userObject)
  }
 
   const components = [
@@ -46,6 +88,10 @@ const Edit = () => {
     <EmptyChatRow key={4} />,
     <EmptyChatRow key={5} />,
 
+    <FormControl type="text" id="user" value={formData.user} fn={handleUsernameChange} placeholder={user} label="edit" key={6}/>,
+    <FormControl type="text" id="avatar" value={formData.avatar} fn={handleAvatarChange} placeholder={avatar} key={7}/>,
+    <FormControl type="email" id="email" value={formData.email} fn={handleEmailChange} placeholder={email} key={8}/>,
+    <FormControl type="password" id="pwd" value={password} fn={handlePasswordChange} placeholder="password" key={9}/>,
     
     <EmptyChatRow key={11} />,
     <EmptyChatRow key={12} />,

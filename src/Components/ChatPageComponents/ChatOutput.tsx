@@ -7,13 +7,13 @@ const ChatOutput = () => {
   const { latestMessage } = useChat();
 
   const components = [
-    <ChatMessage from="cornelia" message="hej" />,
-    <ChatMessage from="max" message="hej" />,
-    <ChatMessage from="cornelia" message="hej" />,
-    <ChatMessage from="max" message="hej" />,
-    <ChatMessage from="cornelia" message="hej" />,
-    <ChatMessage from="max" message="hej" />,
-    <ChatMessage from="max" message={latestMessage} />,
+    <ChatMessage from="cornelia" message="hej" key={0}/>,
+    <ChatMessage from="max" message="hej" key={1}/>,
+    <ChatMessage from="cornelia" message="hej" key={2}/>,
+    <ChatMessage from="max" message="hej" key={3}/>,
+    <ChatMessage from="cornelia" message="hej" key={4}/>,
+    <ChatMessage from="max" message="hej" key={5}/>,
+    <ChatMessage from="max" message={latestMessage} key={6}/>,
   ];
 
   const [count, setCount] = useState(0);
