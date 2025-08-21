@@ -18,8 +18,8 @@ const ChatMessage = ({ from, message, color }: ChatMessageProps) => {
     <p className="font-mono min-h-[32px]">
       <span className="text-gray-400">$</span>&nbsp;
       <span className="text-app-timestamp">{timeStamp}&nbsp;</span>
-      <span className="text-text-primary">from/</span>
-      <span className="text-app-name">{from}</span>
+      <span className="text-app-color">from</span>/
+      <span className="text-secondary">{from}</span>
       <span className="text-text-primary">:</span>&nbsp;
       {color ? (
         <>

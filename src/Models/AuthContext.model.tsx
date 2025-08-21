@@ -1,6 +1,7 @@
 import type { JwtBody } from "./JwtBody.model";
 import type { LoginBody } from "./LoginBody.model";
 import type { RegisterBody } from "./RegisterBody.model";
+import type { UpdatedData } from "./UpdatedData.model";
 
 export interface AuthContextProps {
   csrfToken: string;
@@ -19,4 +20,5 @@ export interface AuthContextProps {
   setSuccessMessage: React.Dispatch<React.SetStateAction<string>>;
   decodedJwt: JwtBody;
   setDecodedJwt: React.Dispatch<React.SetStateAction<JwtBody>>;
+  updateUserInfo: (userId: number, updatedData: UpdatedData) => Promise<void>
 }

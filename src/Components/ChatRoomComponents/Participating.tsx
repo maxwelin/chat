@@ -9,14 +9,14 @@ interface Participating {
 }
 
 const components = [
-  <ChatMessage from="room_404" message="loading active chatrooms" key={2} />,
-  <EmptyChatRow key={4} />,
-  <EmptyChatRow key={5} />,
-  <LogMessage message="chatrooms loaded" key={6} />,
+  <ChatMessage from="room_404" message="loading active chatrooms" key={0} />,
+  <EmptyChatRow key={1} />,
+  <EmptyChatRow key={2} />,
+  <LogMessage message="chatrooms loaded" key={3} />,
   <ChatMessage
     from="room_404"
     message="click on a chatroom id to join"
-    key={7}
+    key={4}
   />,
 ];
 
@@ -33,10 +33,10 @@ const Participating = ({ array }: Participating) => {
             <div className="flex min-h-[32px] py-1">
               <span className="text-gray-400">
                 <span>&gt;</span>
-                <span className="text-secondary">&nbsp;room&nbsp;{i + 1}</span>
+                <span className="text-app-name">&nbsp;room&nbsp;{i + 1}</span>
                 :&nbsp;
               </span>
-              <span key={i + components.length + 2}>{item}</span>
+              <span key={i + components.length + 1}>{item}</span>
             </div>
           ))}
         </div>

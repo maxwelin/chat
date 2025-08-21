@@ -19,7 +19,7 @@ const FormControl = ({
         <span className="text-gray-400 group-focus-within:text-secondary">
           {label ? <>$</> : <>&gt;</>}
         </span>
-        <span className="text-text-primar">{label}/</span>
+        <span className="text-text-primary">{label}/</span>
       </label>
       <input
         ref={ref}

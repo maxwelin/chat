@@ -24,13 +24,13 @@ const ChatInput = () => {
 
   return (
     <>
-      <div className="group py-1 flex justify-between border-t-2 border-dashed border-gray-600">
+      <div className="group py-1 flex justify-between">
         <div className="flex">
           <label htmlFor="input" className="flex">
             <span className="text-gray-400 group-focus-within:text-secondary">
               $&nbsp;
             </span>{" "}
-            <span className="text-app-name">user</span>/
+            <span className="text-app-color">user</span>/
             <span className="text-secondary">{user}</span>
           </label>
           :

@@ -5,6 +5,7 @@ import type { RegisterBody } from "../Models/RegisterBody.model";
 import type { LoginBody } from "../Models/LoginBody.model";
 import type { JwtBody } from "../Models/JwtBody.model";
 import { jwtDecode } from "jwt-decode";
+import type { UpdatedData } from "../Models/UpdatedData.model";
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
@@ -49,6 +50,30 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
     }
   };
 
+  const updateUserInfo = async (userId: number, updatedData: UpdatedData) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_USER_ENDPOINT, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+        body: JSON.stringify({userId: userId, updatedData: updatedData})
+      })
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Error ${response.status}: ${errorText}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+      setSuccessMessage(data.message)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   const register = async (body: RegisterBody) => {
     try {
       const response = await fetch(import.meta.env.VITE_REGISTER_ENDPOINT, {
@@ -76,7 +101,8 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
   const logout = () => {
     sessionStorage.clear();
     localStorage.clear();
-    setLoggedIn(false);
+    setErrorMessage("session expired. log in again")
+    setLoggedIn(false) 
   };
 
   const setLocalStorage = (token: string) => {
@@ -87,16 +113,24 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
     localStorage.setItem("decodedJwt", JSON.stringify(decodedJwt));
     localStorage.setItem("loggedIn", JSON.stringify(true));
   };
-
+  
   const getLocalStorage = () => {
-    const token = JSON.parse(localStorage.getItem("decodedJwt")!);
+    const decoded = JSON.parse(localStorage.getItem("decodedJwt")!);
     const isLoggedIn = JSON.parse(localStorage.getItem("loggedIn")!);
-
-    if (token && isLoggedIn) {
+    
+    if(decoded && isJwtExpired(decoded.exp)) {
+      logout()
+    }
+    if (decoded && isLoggedIn) {
       setLoggedIn(isLoggedIn);
-      setDecodedJwt(token);
+      setDecodedJwt(decoded);
     }
   };
+
+  const isJwtExpired = (exp: number) => {
+    const now = Math.floor(Date.now() / 1000)
+    return now >= exp
+  }
 
   const decodeJwt = (token: string) => {
     const decoded: JwtBody = jwtDecode(token);
@@ -150,6 +184,7 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
         setSuccessMessage,
         decodedJwt,
         setDecodedJwt,
+        updateUserInfo
       }}
     >
       {children}

@@ -75,7 +75,7 @@ const ChatContextProvider: React.FC<ProviderProps> = ({ children }) => {
 
   useEffect(() => {
     getConversations();
-  }, [jwt]);
+  }, []);
 
   return (
     <ChatContext.Provider

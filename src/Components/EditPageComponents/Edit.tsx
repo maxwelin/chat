@@ -1,39 +1,20 @@
 import { useState } from "react";
 import useStagger from "../../Hooks/useStagger";
 import HomeBtn from "../Shared/HomeButton";
-import { useAuth } from "../../Hooks/useAuth";
 import ChatMessage from "../Shared/ChatMessage";
 import EmptyChatRow from "../Shared/EmptyChatRow";
 import PrimaryButton from "../Shared/PrimaryButton";
-import FormControl from "../Shared/FormControl";
-import { useNavigate } from "react-router-dom";
 import MessageLogger from "../Shared/MessageLogger";
-import type { EditBody } from "../../Models/EditBody.model";
+import { useAuth } from "../../Hooks/useAuth";
 
 const Edit = () => {
-  const { decodedJwt } = useAuth();
-  const { setErrorMessage } = useAuth();
-  const navigate = useNavigate();
-  const { user, id, avatar, email } = decodedJwt;
+  const { decodedJwt, updateUserInfo } = useAuth()
+ const { user, avatar, id } = decodedJwt
 
-  const [repeatPassword, setRepeatPassword] = useState("");
-  const [formData, setFormData] = useState<EditBody>({});
-
-  const handleRepeatPasswordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setRepeatPassword(e.target.value);
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (formData.password && formData.password !== repeatPassword) {
-      setErrorMessage("password does not match");
-      return;
-    }
-    console.log("form submitted :-)", e.target[1].value);
-  };
+ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault()
+  updateUserInfo(id, {email: "max@ad.se"})
+ }
 
   const components = [
     <HomeBtn key={0} />,
@@ -45,7 +26,7 @@ const Edit = () => {
       <span className="text-secondary">{user}</span>
       <img
         className="h-[24px] w-[24px] rounded-full"
-        src={formData.avatar || avatar}
+        src={avatar}
         alt="avatar"
       />
       /<span className="text-primary">settings</span>/
@@ -65,43 +46,7 @@ const Edit = () => {
     <EmptyChatRow key={4} />,
     <EmptyChatRow key={5} />,
 
-    <FormControl
-      label="edit"
-      key={6}
-      type="text"
-      id="username"
-      placeholder={user}
-      value={formData.username!}
-    />,
-    <FormControl
-      key={7}
-      type="avatar"
-      id="avatar"
-      placeholder={avatar}
-      value={formData.avatar!}
-    />,
-    <FormControl
-      key={8}
-      type="email"
-      id="email"
-      placeholder={email}
-      value={formData.email!}
-    />,
-    <FormControl
-      key={9}
-      type="password"
-      id="password"
-      placeholder="password"
-      value={formData.password!}
-    />,
-    <FormControl
-      key={10}
-      type="password"
-      id="repeat-password"
-      fn={handleRepeatPasswordChange}
-      placeholder="password"
-      value={repeatPassword}
-    />,
+    
     <EmptyChatRow key={11} />,
     <EmptyChatRow key={12} />,
     <PrimaryButton type="submit" text="Save changes" key={13} />,
