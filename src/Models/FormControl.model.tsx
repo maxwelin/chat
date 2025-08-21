@@ -6,7 +6,7 @@ export interface FormControlType {
   type: string;
   id: string;
   value: string;
-  fn: (e: ChangeEvent<HTMLInputElement>) => void;
+  fn?: (e: ChangeEvent<HTMLInputElement>) => void;
   label?: string;
   placeholder: string;
 }

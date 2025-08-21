@@ -5,7 +5,6 @@ import LogMessage from "../Shared/LogMessage";
 import { useAuth } from "../../Hooks/useAuth";
 import ChatInput from "./ChatInput";
 import ChatOutput from "./ChatOutput";
-import EmptyChatRow from "../Shared/EmptyChatRow";
 
 const Chat = () => {
   const { decodedJwt } = useAuth();
@@ -22,7 +21,6 @@ const Chat = () => {
     </h1>,
 
     <LogMessage message={user + " joined the room"} key={3} />,
-    <EmptyChatRow key={6} />,
     <ChatOutput key={4} />,
     <ChatInput key={5} />,
   ];

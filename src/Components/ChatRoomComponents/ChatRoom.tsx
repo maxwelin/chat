@@ -2,6 +2,8 @@ import { useState } from "react";
 import useStagger from "../../Hooks/useStagger";
 import { useChat } from "../../Hooks/useChat";
 import Participating from "./Participating";
+import HomeBtn from "../Shared/HomeButton";
+import ProfilePath from "../Shared/ProfilePath";
 
 const ChatRoom = () => {
   const { conversations } = useChat();
@@ -15,6 +17,8 @@ const ChatRoom = () => {
   return (
     <div className="w-full flex place-content-center pt-10">
       <div className="flex flex-col w-lg ">
+        <HomeBtn />
+        <ProfilePath path="chatrooms" />
         {participating.length > 0 && (
           <div className="flex flex-col w-lg ">
             <Participating array={participating} />

@@ -10,11 +10,9 @@ import MessageLogger from "../Shared/MessageLogger";
 import EmptyChatRow from "../Shared/EmptyChatRow";
 import ChatMessage from "../Shared/ChatMessage";
 import useStagger from "../../Hooks/useStagger";
-import { useChat } from "../../Hooks/useChat";
 
 const Login = () => {
   const { login, loggedIn, setErrorMessage } = useAuth();
-  const { getConversations } = useChat();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -43,7 +41,6 @@ const Login = () => {
       username: username,
       password: password,
     });
-    getConversations();
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {

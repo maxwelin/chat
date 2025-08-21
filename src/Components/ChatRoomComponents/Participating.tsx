@@ -2,8 +2,6 @@ import { useState } from "react";
 import useStagger from "../../Hooks/useStagger";
 import ChatMessage from "../Shared/ChatMessage";
 import EmptyChatRow from "../Shared/EmptyChatRow";
-import HomeBtn from "../Shared/HomeButton";
-import Title from "../Shared/Title";
 import LogMessage from "../Shared/LogMessage";
 
 interface Participating {
@@ -11,17 +9,14 @@ interface Participating {
 }
 
 const components = [
-  <HomeBtn key={0} />,
-  <Title title="chatrooms" key={1} />,
   <ChatMessage from="room_404" message="loading active chatrooms" key={2} />,
-  <EmptyChatRow key={3} />,
   <EmptyChatRow key={4} />,
-  <EmptyChatRow key={7} />,
-  <LogMessage message="chatrooms loaded" key={5} />,
+  <EmptyChatRow key={5} />,
+  <LogMessage message="chatrooms loaded" key={6} />,
   <ChatMessage
     from="room_404"
     message="click on a chatroom id to join"
-    key={6}
+    key={7}
   />,
 ];
 
@@ -41,7 +36,7 @@ const Participating = ({ array }: Participating) => {
                 <span className="text-secondary">&nbsp;room&nbsp;{i + 1}</span>
                 :&nbsp;
               </span>
-              <span key={i + components.length + 1}>{item}</span>
+              <span key={i + components.length + 2}>{item}</span>
             </div>
           ))}
         </div>

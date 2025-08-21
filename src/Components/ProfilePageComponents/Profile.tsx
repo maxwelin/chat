@@ -2,16 +2,22 @@ import EmptyChatRow from "../Shared/EmptyChatRow";
 import useStagger from "../../Hooks/useStagger";
 import ChatMessage from "../Shared/ChatMessage";
 import { useAuth } from "../../Hooks/useAuth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PrimaryButton from "../Shared/PrimaryButton";
 import SideNav from "./SideNav/SideNav";
 import LogMessage from "../Shared/LogMessage";
 import { useNavigate } from "react-router-dom";
 import ProfilePath from "../Shared/ProfilePath";
+import { useChat } from "../../Hooks/useChat";
 
 const Profile = () => {
   const { decodedJwt } = useAuth();
+  const { getConversations } = useChat();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getConversations();
+  }, []);
 
   const [navVisibility, setNavVisibility] = useState(false);
 

@@ -4,6 +4,7 @@ import type { ProviderProps } from "../Models/ProviderProps.model";
 import type { RegisterBody } from "../Models/RegisterBody.model";
 import type { LoginBody } from "../Models/LoginBody.model";
 import type { JwtBody } from "../Models/JwtBody.model";
+import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
@@ -80,6 +81,7 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
 
   const setLocalStorage = (token: string) => {
     const decodedJwt = decodeJwt(token);
+    console.log(decodedJwt);
     setDecodedJwt(decodedJwt);
     localStorage.setItem("jwt", token);
     localStorage.setItem("decodedJwt", JSON.stringify(decodedJwt));
@@ -97,7 +99,9 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
   };
 
   const decodeJwt = (token: string) => {
-    return JSON.parse(atob(token.split(".")[1]));
+    const decoded: JwtBody = jwtDecode(token);
+    console.log(decoded);
+    return decoded;
   };
 
   const login = async (body: LoginBody) => {
@@ -118,8 +122,10 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
         throw new Error(result.error || `Response status: ${response.status}`);
       }
 
-      setLoggedIn(true);
-      setLocalStorage(result.token);
+      if (response.ok) {
+        setLoggedIn(true);
+        setLocalStorage(result.token);
+      }
     } catch (error) {
       console.error(error);
     }

@@ -23,9 +23,8 @@ const ChatContextProvider: React.FC<ProviderProps> = ({ children }) => {
         {
           method: "GET",
           headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + jwt,
             Accept: "application/json",
+            Authorization: "Bearer " + jwt,
           },
         }
       );

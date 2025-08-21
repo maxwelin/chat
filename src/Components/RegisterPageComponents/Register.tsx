@@ -76,7 +76,7 @@ const Register = () => {
       username: formData.username,
       password: formData.password,
       email: formData.email,
-      avatar: "",
+      avatar: formData.avatar,
     });
   };
   const usernameInputRef = useRef<HTMLInputElement>(null);
