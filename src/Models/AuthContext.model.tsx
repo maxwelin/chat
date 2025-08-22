@@ -20,5 +20,5 @@ export interface AuthContextProps {
   setSuccessMessage: React.Dispatch<React.SetStateAction<string>>;
   decodedJwt: JwtBody;
   setDecodedJwt: React.Dispatch<React.SetStateAction<JwtBody>>;
-  updateUserInfo: (userId: number, updatedData: UpdatedData) => Promise<void>
+  updateUserInfo: (userId: number, updatedData: UpdatedData) => Promise<void>;
 }

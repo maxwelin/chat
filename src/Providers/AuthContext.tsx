@@ -25,6 +25,7 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
     user: "",
   });
 
+
   useEffect(() => {
     getLocalStorage();
   }, []);
@@ -61,14 +62,16 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
         body: JSON.stringify({userId: userId, updatedData: updatedData})
       })
 
+      const result = await response.json();
+
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`Error ${response.status}: ${errorText}`);
       }
 
-      const data = await response.json();
-      console.log(data);
-      setSuccessMessage(data.message)
+      console.log(result);
+      setSuccessMessage(result.message)
+      setLocalStorage(result.token);
     } catch (error) {
       console.error(error)
     }
@@ -156,10 +159,9 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
         throw new Error(result.error || `Response status: ${response.status}`);
       }
 
-      if (response.ok) {
         setLoggedIn(true);
         setLocalStorage(result.token);
-      }
+      
     } catch (error) {
       console.error(error);
     }
@@ -184,7 +186,7 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
         setSuccessMessage,
         decodedJwt,
         setDecodedJwt,
-        updateUserInfo
+        updateUserInfo,
       }}
     >
       {children}

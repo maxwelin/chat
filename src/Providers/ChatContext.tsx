@@ -1,11 +1,11 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import type { ProviderProps } from "../Models/ProviderProps.model";
 import type ChatContextProps from "../Models/ChatContext.model";
 
 const ChatContext = createContext<ChatContextProps | undefined>(undefined);
 
 const ChatContextProvider: React.FC<ProviderProps> = ({ children }) => {
-  const jwt = localStorage.getItem("jwt");
+  
   const [latestMessage, setLatestMessage] = useState("");
   const [conversations, setConversations] = useState({
     invitesReceived: [],
@@ -24,7 +24,7 @@ const ChatContextProvider: React.FC<ProviderProps> = ({ children }) => {
           method: "GET",
           headers: {
             Accept: "application/json",
-            Authorization: "Bearer " + jwt,
+            Authorization: "Bearer " + localStorage.getItem("jwt"),
           },
         }
       );
@@ -43,14 +43,13 @@ const ChatContextProvider: React.FC<ProviderProps> = ({ children }) => {
   };
 
   const sendMessage = async (message: string) => {
-    console.log(jwt);
     if (message) {
       try {
         const response = await fetch(import.meta.env.VITE_MESSAGES_ENDPOINT, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + jwt,
+            Authorization: "Bearer " + localStorage.getItem("jwt"),
             Accept: "application/json",
           },
           body: JSON.stringify({
@@ -72,10 +71,6 @@ const ChatContextProvider: React.FC<ProviderProps> = ({ children }) => {
       }
     }
   };
-
-  useEffect(() => {
-    getConversations();
-  }, []);
 
   return (
     <ChatContext.Provider
