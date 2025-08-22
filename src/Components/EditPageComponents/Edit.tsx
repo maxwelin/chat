@@ -9,6 +9,53 @@ import { useAuth } from "../../Hooks/useAuth";
 import type { UpdatedData } from "../../Models/UpdatedData.model";
 import FormControl from "../Shared/FormControl";
 
+import React from 'react'
+
+const SettingsTitle = () => {
+  const { decodedJwt } = useAuth()
+  const { user, avatar} = decodedJwt
+  return (
+     <h1
+      key={1}
+      className="w-2/3 flex py-1 border-b-2 border-dashed border-gray-600"
+    >
+      <span className="text-gray-400">$</span> &nbsp;
+      <span className="text-secondary">{user}</span>
+      {avatar && <img
+        className="h-[24px] w-[24px] rounded-full"
+        src={avatar}
+        alt="avatar"
+      />}
+      
+      /<span className="text-primary">settings</span>/
+      <span className="text-app-name">edit</span>
+    </h1>
+  )
+}
+
+interface UrlProps {
+  url: string
+}
+
+const Url = ({url}: UrlProps) => {
+  return (
+    <div className="flex p-y h-[32px] items-center">
+      <label
+        htmlFor="password"
+        className="text-text-primary py-1 min-w-[100px] flex justify-between"
+      >
+        <span className="text-gray-400">
+          &gt;
+        </span>
+        <span className="text-text-primary">url:</span>
+      </label>
+      <span className="text-app-color">&nbsp;{url}</span>
+    </div>
+  )
+}
+
+
+
 const Edit = () => {
   const { decodedJwt, updateUserInfo, fetchCsrfToken, setErrorMessage } = useAuth()
  const { user, avatar, id, email } = decodedJwt
@@ -60,20 +107,7 @@ useEffect(() => {
 
   const components = [
     <HomeBtn key={0} />,
-    <h1
-      key={1}
-      className="w-2/3 flex py-1 border-b-2 border-dashed border-gray-600"
-    >
-      <span className="text-gray-400">$</span> &nbsp;
-      <span className="text-secondary">{user}</span>
-      <img
-        className="h-[24px] w-[24px] rounded-full"
-        src={avatar}
-        alt="avatar"
-      />
-      /<span className="text-primary">settings</span>/
-      <span className="text-app-name">edit</span>
-    </h1>,
+    <SettingsTitle key={1}/>,
     <ChatMessage
       from="room_404"
       message="only enter the information you wish to update"
@@ -81,21 +115,34 @@ useEffect(() => {
     />,
     <ChatMessage
       from="room_404"
-      message="input avatar as a freeimage.host or pravatar.cc link"
+      message="valid avatar domain names:"
       key={3}
     />,
-
+    <Url url="https://i.pravatar.cc" key={15}/>,
+    <Url url="https://freeimage.host" key={16}/>,
+    <Url url="https://iili.io" key={17}/>,
+    <Url url="https://api.dicebear.com" key={18}/>,
     <EmptyChatRow key={4} />,
+   
+    
     <EmptyChatRow key={5} />,
 
     <FormControl type="text" id="user" value={formData.user} fn={handleUsernameChange} placeholder={user} label="edit" key={6}/>,
-    <FormControl type="text" id="avatar" value={formData.avatar} fn={handleAvatarChange} placeholder={avatar} key={7}/>,
+    <FormControl type="text" id="avatar" value={formData.avatar} fn={handleAvatarChange} placeholder={avatar || "avatar"} key={7}/>,
     <FormControl type="email" id="email" value={formData.email} fn={handleEmailChange} placeholder={email} key={8}/>,
     <FormControl type="password" id="pwd" value={password} fn={handlePasswordChange} placeholder="password" key={9}/>,
     
-    <EmptyChatRow key={11} />,
+     <div className="flex py-1 justify-between h-[32px] overflow-visible">
+      <span className="text-gray-400">·</span>
+      <img
+         className="h-[64px] w-[64px] rounded-full bottom-0"
+         src={formData.avatar || avatar}
+         alt="avatar"
+       />
+    </div>,
     <EmptyChatRow key={12} />,
     <PrimaryButton type="submit" text="Save changes" key={13} />,
+   
     <MessageLogger key={14} />,
   ];
 

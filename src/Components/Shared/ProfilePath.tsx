@@ -15,11 +15,11 @@ const ProfilePath = ({ path }: ProfilePathProps) => {
       <span className="text-gray-400">$</span>{" "}
       <span className="text-app-name">app</span>/
       <span className="text-secondary">{user}</span>
-      <img
+      {avatar && <img
         className="h-[24px] w-[24px] rounded-full"
         src={avatar}
         alt="avatar"
-      />
+      />}
       /<span className="text-primary">{path}</span>
     </h1>
   );

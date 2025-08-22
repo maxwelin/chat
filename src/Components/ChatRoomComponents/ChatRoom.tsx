@@ -4,6 +4,8 @@ import { useChat } from "../../Hooks/useChat";
 import Participating from "./Participating";
 import HomeBtn from "../Shared/HomeButton";
 import ProfilePath from "../Shared/ProfilePath";
+import Invites from "./Invites";
+import ChatRoomStatusMessages from "./ChatRoomStatusMessages";
 
 const ChatRoom = () => {
   const { conversations } = useChat();
@@ -26,14 +28,18 @@ const ChatRoom = () => {
         )}
         {invitesReceived.length > 0 && (
           <div className="flex flex-col w-lg ">
-            {invitesReceived.slice(0, count)}
+            <Invites array={invitesReceived} status="invites recieved" delay={1500}/>
           </div>
         )}
-        {invitesReceived.length > 0 && (
+        {invitesSent.length > 0 && (
           <div className="flex flex-col w-lg ">
-            {invitesSent.slice(0, count)}
+            <Invites array={invitesSent} status="invites sent" delay={2500}/>
           </div>
         )}
+        {participating.length === 0 &&  invitesReceived.length === 0 && invitesSent.length === 0 && 
+          <ChatRoomStatusMessages />
+        
+        }
       </div>
     </div>
   );

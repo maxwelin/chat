@@ -21,4 +21,5 @@ export interface AuthContextProps {
   decodedJwt: JwtBody;
   setDecodedJwt: React.Dispatch<React.SetStateAction<JwtBody>>;
   updateUserInfo: (userId: number, updatedData: UpdatedData) => Promise<void>;
+  checkJwtExpiration: (token: JwtBody) => void
 }

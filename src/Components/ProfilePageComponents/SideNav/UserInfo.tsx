@@ -14,9 +14,7 @@ const UserInfo = ({ value, label }: UserInfoProps) => {
     );
   } else {
     return (
-      <h1 className="py-1">
-        <span className="text-gray-400">·</span>&nbsp;
-      </h1>
+      <></>
     );
   }
 };

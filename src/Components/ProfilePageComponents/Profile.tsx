@@ -11,12 +11,14 @@ import ProfilePath from "../Shared/ProfilePath";
 import { useChat } from "../../Hooks/useChat";
 
 const Profile = () => {
-  const { decodedJwt } = useAuth();
+  const { decodedJwt, checkJwtExpiration, loggedIn } = useAuth();
   const { getConversations } = useChat();
   const navigate = useNavigate();
 
   useEffect(() => {
-    getConversations();
+    getConversations()
+    checkJwtExpiration(decodedJwt);
+    if(!loggedIn) navigate("/login")
   }, []);
 
   const [navVisibility, setNavVisibility] = useState(false);
@@ -55,7 +57,7 @@ const Profile = () => {
   ];
 
   const [count, setCount] = useState(0);
-  useStagger(count, setCount, components);
+  useStagger(count, setCount, components, undefined);
   return <>{components.slice(0, count)}</>;
 };
 export default Profile;

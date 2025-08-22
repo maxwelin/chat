@@ -104,7 +104,6 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
   const logout = () => {
     sessionStorage.clear();
     localStorage.clear();
-    setErrorMessage("session expired. log in again")
     setLoggedIn(false) 
   };
 
@@ -116,14 +115,19 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
     localStorage.setItem("decodedJwt", JSON.stringify(decodedJwt));
     localStorage.setItem("loggedIn", JSON.stringify(true));
   };
+
+  const checkJwtExpiration = (token: JwtBody) => {
+    if(token && isJwtExpired(token.exp)) {
+      console.warn("Session expired, user logged out")
+      logout()
+    }
+  } 
   
   const getLocalStorage = () => {
     const decoded = JSON.parse(localStorage.getItem("decodedJwt")!);
     const isLoggedIn = JSON.parse(localStorage.getItem("loggedIn")!);
     
-    if(decoded && isJwtExpired(decoded.exp)) {
-      logout()
-    }
+   checkJwtExpiration(decoded)
     if (decoded && isLoggedIn) {
       setLoggedIn(isLoggedIn);
       setDecodedJwt(decoded);
@@ -187,6 +191,7 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
         decodedJwt,
         setDecodedJwt,
         updateUserInfo,
+        checkJwtExpiration,
       }}
     >
       {children}

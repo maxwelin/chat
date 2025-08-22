@@ -7,10 +7,10 @@ import ChatMessage from "../../Shared/ChatMessage";
 import LogMessage from "../../Shared/LogMessage";
 import UserInfo from "./UserInfo";
 import { useNavigate } from "react-router-dom";
+import ProfilePath from "../../Shared/ProfilePath";
 
 const SideNavContent = () => {
   const { decodedJwt, logout } = useAuth();
-  const { user, avatar } = decodedJwt;
   const navigate = useNavigate();
 
   const handleLogOut = () => {
@@ -26,19 +26,7 @@ const SideNavContent = () => {
     <EmptyChatRow key={1} />,
     <EmptyChatRow key={2} />,
     <LogMessage key={3} message="settings loaded" />,
-    <h1
-      key={4}
-      className="w-2/3 flex py-1 border-b-2 border-dashed border-gray-600"
-    >
-      <span className="text-gray-400">$</span> &nbsp;
-      <span className="text-secondary">{user}</span>
-      <img
-        className="h-[24px] w-[24px] rounded-full"
-        src={avatar}
-        alt="avatar"
-      />
-      /<span className="text-primary">settings</span>
-    </h1>,
+    <ProfilePath path="settings" key={4}/>,
     <UserInfo label="email" value={decodedJwt.email} key={5} />,
     <UserInfo label="user id" value={decodedJwt.id.toString()} key={6} />,
     <UserInfo label="avatar" value={decodedJwt.avatar} key={7} />,

@@ -6,6 +6,12 @@ const MessageLogger = () => {
     useAuth();
 
   useEffect(() => {
+    setErrorMessage("")
+    setSuccessMessage("")
+  }, [])
+  
+
+  useEffect(() => {
     const timeout = setTimeout(() => {
       setErrorMessage("");
     }, 3000);
@@ -18,7 +24,7 @@ const MessageLogger = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setSuccessMessage("");
-    }, 1500);
+    }, 2000);
 
     return () => {
       clearTimeout(timeout);
