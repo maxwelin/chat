@@ -10,8 +10,9 @@ import Title from "../Shared/Title";
 import HomeBtn from "../Shared/HomeButton";
 import MessageLogger from "../Shared/MessageLogger";
 import EmptyChatRow from "../Shared/EmptyChatRow";
-import ChatMessage from "../Shared/ChatMessage";
+import AppMessage from "../Shared/AppMessage";
 import useStagger from "../../Hooks/useStagger";
+import { Url } from "../EditPageComponents/Edit";
 
 const Register = () => {
   const { register, setErrorMessage, registered, setRegistered } = useAuth();
@@ -84,12 +85,16 @@ const Register = () => {
   const components = [
     <HomeBtn key={0} />,
     <Title title="register" key={1} />,
-    <ChatMessage from="room_404" message="enter your information" key={2} />,
-    <ChatMessage
+    <AppMessage from="room_404" message="enter your information" key={2} />,
+       <AppMessage
       from="room_404"
-      message="input avatar as a freeimage.host or pravatar.cc link"
+      message="valid avatar domain names:"
       key={3}
     />,
+    <Url url="https://i.pravatar.cc" key={15}/>,
+    <Url url="https://freeimage.host" key={16}/>,
+    <Url url="https://iili.io" key={17}/>,
+    <Url url="https://api.dicebear.com" key={18}/>,
     <EmptyChatRow key={9} />,
     <EmptyChatRow key={4} />,
     <FormControl

@@ -1,6 +1,6 @@
 import EmptyChatRow from "../Shared/EmptyChatRow";
 import useStagger from "../../Hooks/useStagger";
-import ChatMessage from "../Shared/ChatMessage";
+import AppMessage from "../Shared/AppMessage";
 import { useAuth } from "../../Hooks/useAuth";
 import { useEffect, useState } from "react";
 import PrimaryButton from "../Shared/PrimaryButton";
@@ -41,18 +41,18 @@ const Profile = () => {
 
     <ProfilePath path="profile" key={1} />,
     <LogMessage message={user + " connected"} key={3} />,
-    <ChatMessage from="room_404" message={`welcome ${user}`} key={4} />,
+    <AppMessage from="room_404" message={`welcome ${user}`} key={4} />,
 
     <EmptyChatRow key={5} />,
     <EmptyChatRow key={6} />,
+    <PrimaryButton key={8} type="button" fn={navigateToChat} text="chat" />,
     <PrimaryButton
       key={7}
       type="button"
       fn={navigateToChatRooms}
       text="select chat room"
     />,
-    <PrimaryButton key={8} type="button" fn={navigateToChat} text="chat" />,
-    <PrimaryButton key={9} type="button" fn={toggleNav} text="settings" />,
+    <PrimaryButton key={9} type="button" fn={toggleNav} text="user settings" />,
     <SideNav key={10} navVisibility={navVisibility} />,
   ];
 

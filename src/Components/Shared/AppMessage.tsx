@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import getTimeStamp from "../../Functions/getTimeStamp";
 
-interface ChatMessageProps {
+interface AppMessageProps {
   from: string;
   message: string;
   color?: string;
 }
 
-const ChatMessage = ({ from, message, color }: ChatMessageProps) => {
+const AppMessage = ({ from, message, color }: AppMessageProps) => {
   const [timeStamp, setTimeStamp] = useState("");
 
   useEffect(() => {
@@ -33,4 +33,4 @@ const ChatMessage = ({ from, message, color }: ChatMessageProps) => {
     </p>
   );
 };
-export default ChatMessage;
+export default AppMessage;

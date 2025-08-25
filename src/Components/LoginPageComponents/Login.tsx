@@ -8,7 +8,7 @@ import FormControl from "../Shared/FormControl";
 import HomeBtn from "../Shared/HomeButton";
 import MessageLogger from "../Shared/MessageLogger";
 import EmptyChatRow from "../Shared/EmptyChatRow";
-import ChatMessage from "../Shared/ChatMessage";
+import AppMessage from "../Shared/AppMessage";
 import useStagger from "../../Hooks/useStagger";
 
 const Login = () => {
@@ -56,7 +56,7 @@ const Login = () => {
   const components = [
     <HomeBtn key={0} />,
     <Title title="login" key={1} />,
-    <ChatMessage from="room_404" message="login to continue" key={2} />,
+    <AppMessage from="room_404" message="login to continue" key={2} />,
     <EmptyChatRow key={4} />,
     <EmptyChatRow key={7} />,
     <FormControl

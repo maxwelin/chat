@@ -141,7 +141,6 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
 
   const decodeJwt = (token: string) => {
     const decoded: JwtBody = jwtDecode(token);
-    console.log(decoded);
     return decoded;
   };
 
@@ -192,6 +191,7 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
         setDecodedJwt,
         updateUserInfo,
         checkJwtExpiration,
+        decodeJwt
       }}
     >
       {children}

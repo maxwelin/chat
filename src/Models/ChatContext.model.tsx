@@ -1,3 +1,5 @@
+import type { Message } from "./Messages.model";
+
 interface Conversation {
   invitesReceived: string[];
   invitesSent: string[];
@@ -5,6 +7,8 @@ interface Conversation {
 }
 
 export default interface ChatContextProps {
+  loadingMessages: boolean;
+  setLoadingMessages: React.Dispatch<React.SetStateAction<boolean>>
   sendMessage: (message: string) => void;
   latestMessage: string;
   setLatestMessage: React.Dispatch<React.SetStateAction<string>>;
@@ -12,4 +16,6 @@ export default interface ChatContextProps {
   setChatRoomId: React.Dispatch<React.SetStateAction<string>>;
   conversations: Conversation;
   getConversations: () => void;
+  getMessages: () => void;
+  messages: Message[]
 }

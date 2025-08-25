@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useStagger from "../../Hooks/useStagger";
 import HomeBtn from "../Shared/HomeButton";
-import ChatMessage from "../Shared/ChatMessage";
+import AppMessage from "../Shared/AppMessage";
 import EmptyChatRow from "../Shared/EmptyChatRow";
 import PrimaryButton from "../Shared/PrimaryButton";
 import MessageLogger from "../Shared/MessageLogger";
@@ -37,7 +37,7 @@ interface UrlProps {
   url: string
 }
 
-const Url = ({url}: UrlProps) => {
+export const Url = ({url}: UrlProps) => {
   return (
     <div className="flex p-y h-[32px] items-center">
       <label
@@ -108,12 +108,12 @@ useEffect(() => {
   const components = [
     <HomeBtn key={0} />,
     <SettingsTitle key={1}/>,
-    <ChatMessage
+    <AppMessage
       from="room_404"
       message="only enter the information you wish to update"
       key={2}
     />,
-    <ChatMessage
+    <AppMessage
       from="room_404"
       message="valid avatar domain names:"
       key={3}
@@ -132,7 +132,7 @@ useEffect(() => {
     <FormControl type="email" id="email" value={formData.email} fn={handleEmailChange} placeholder={email} key={8}/>,
     <FormControl type="password" id="pwd" value={password} fn={handlePasswordChange} placeholder="password" key={9}/>,
     
-     <div className="flex py-1 justify-between h-[32px] overflow-visible">
+    <div key={10} className="flex py-1 justify-between h-[32px] overflow-visible">
       <span className="text-gray-400">·</span>
       <img
          className="h-[64px] w-[64px] rounded-full bottom-0"

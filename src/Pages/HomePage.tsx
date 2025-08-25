@@ -3,7 +3,7 @@ import Button from "../Components/Shared/PrimaryButton";
 import SecondaryButton from "../Components/Shared/SecondaryButton";
 import Title from "../Components/Shared/Title";
 import EmptyChatRow from "../Components/Shared/EmptyChatRow";
-import ChatMessage from "../Components/Shared/ChatMessage";
+import AppMessage from "../Components/Shared/AppMessage";
 import { useState } from "react";
 import useStagger from "../Hooks/useStagger";
 import LogMessage from "../Components/Shared/LogMessage";
@@ -17,11 +17,10 @@ const HomePage = () => {
     <Title title="home" key={1} />,
     <EmptyChatRow key={2} />,
     <LogMessage key={3} message={HEADER} />,
-    <ChatMessage from="room_404" message="welcome" key={4} />,
+    <AppMessage from="room_404" message="welcome" key={4} />,
     <EmptyChatRow key={5} />,
     <EmptyChatRow key={6} />,
-    <ChatMessage from="room_404" message={SUB_HEADER} key={7} />,
-    <EmptyChatRow key={8} />,
+    <AppMessage from="room_404" message={SUB_HEADER} key={7} />,
     <EmptyChatRow key={9} />,
     <EmptyChatRow key={10} />,
     <Link to={"/login"} className="outline-0 " key={11}>
