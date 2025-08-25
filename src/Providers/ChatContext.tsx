@@ -44,6 +44,7 @@ const ChatContextProvider: React.FC<ProviderProps> = ({ children }) => {
 
       const data = await response.json()
       console.log(data)
+      getMessages()
 
     } catch (error) {
       console.error(error)
@@ -108,9 +109,7 @@ const ChatContextProvider: React.FC<ProviderProps> = ({ children }) => {
       const data = await response.json();
       console.log(data);
       setConversations(data);
-      if(data.participating.length > 0){
-        setChatRoomId(data.participating[0])
-      }
+  
     } catch (error) {
       console.error("Could not retrieve conversations: " + error);
     }
