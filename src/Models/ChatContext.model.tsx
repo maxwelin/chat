@@ -18,4 +18,6 @@ export default interface ChatContextProps {
   getConversations: () => void;
   getMessages: () => void;
   messages: Message[]
+  setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
+  deleteMessage: (messageId: number) => void;
 }

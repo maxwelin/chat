@@ -21,6 +21,35 @@ const ChatContextProvider: React.FC<ProviderProps> = ({ children }) => {
     ""
   );
 
+  const deleteMessage = async (messageId: number) => {
+     const token = localStorage.getItem("jwt")
+    if(token) {
+      const decodedToken = decodeJwt(token)
+      checkJwtExpiration(decodedToken)
+    }
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_MESSAGES_ENDPOINT}/${messageId}`, {
+        method: "DELETE",
+        headers: {
+          accept: "*/*",
+          Authorization: "Bearer " + token
+        }
+      })
+
+       if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Error ${response.status}: ${errorText}`);
+      }
+
+      const data = await response.json()
+      console.log(data)
+
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   const getMessages = async () => {
     
     const token = localStorage.getItem("jwt")
@@ -135,7 +164,9 @@ const ChatContextProvider: React.FC<ProviderProps> = ({ children }) => {
         conversations,
         getConversations,
         getMessages,
-        messages
+        messages,
+        setMessages,
+        deleteMessage
       }}
     >
       {children}

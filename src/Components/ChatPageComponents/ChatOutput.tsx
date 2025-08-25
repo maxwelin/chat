@@ -41,7 +41,7 @@ useEffect(() => {
       </>
       </>) : (<>
           {messages.map((message) => (
-            <ChatMessage key={message.id} from={message.userId} text={message.text} time={message.createdAt} />
+            <ChatMessage key={message.id} from={message.userId} text={message.text} time={message.createdAt} messageId={message.id} />
             
           ))}
       </>)}

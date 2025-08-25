@@ -51,7 +51,7 @@ const ChatInput = () => {
             onKeyDown={handleKeyDown}
             type="text"
             autoComplete="off"
-            placeholder=" type here to chat"
+            placeholder="type your message here"
             className="px-2 text-gray-400 outline-none min-w-full"
           />
         </div>
