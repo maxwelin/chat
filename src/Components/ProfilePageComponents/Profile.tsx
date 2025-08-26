@@ -9,7 +9,6 @@ import LogMessage from "../Shared/LogMessage";
 import { useNavigate } from "react-router-dom";
 import ProfilePath from "../Shared/ProfilePath";
 import { useChat } from "../../Hooks/useChat";
-import ErrorButton from "../Shared/Sentry";
 
 const Profile = () => {
   const { decodedJwt, checkJwtExpiration, loggedIn } = useAuth();
