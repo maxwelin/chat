@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/react";
 import { createContext, useEffect, useState } from "react";
 import type { AuthContextProps } from "../Models/AuthContext.model";
 import type { ProviderProps } from "../Models/ProviderProps.model";
@@ -189,7 +190,7 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
 
       if (!response.ok) {
         setErrorMessage(result.error);
-
+        Sentry.captureException(result.error)
         throw new Error(result.error || `Response status: ${response.status}`);
       }
 
