@@ -10,59 +10,20 @@ import type { UpdatedData } from "../../Models/UpdatedData.model";
 import FormControl from "../Shared/FormControl";
 
 import React from 'react'
-
-const SettingsTitle = () => {
-  const { decodedJwt } = useAuth()
-  const { user, avatar} = decodedJwt
-  return (
-     <h1
-      key={1}
-      className="w-2/3 flex py-1 border-b-2 border-dashed border-gray-600"
-    >
-      <span className="text-gray-400">$</span> &nbsp;
-      <span className="text-secondary">{user}</span>
-      {avatar && <img
-        className="h-[24px] w-[24px] rounded-full"
-        src={avatar}
-        alt="avatar"
-      />}
-      
-      /<span className="text-primary">settings</span>/
-      <span className="text-app-name">edit</span>
-    </h1>
-  )
-}
-
-interface UrlProps {
-  url: string
-}
-
-export const Url = ({url}: UrlProps) => {
-  return (
-    <div className="flex p-y h-[32px] items-center">
-      <label
-        htmlFor="password"
-        className="text-text-primary py-1 min-w-[100px] flex justify-between"
-      >
-        <span className="text-gray-400">
-          &gt;
-        </span>
-        <span className="text-text-primary">url:</span>
-      </label>
-      <span className="text-app-color">&nbsp;{url}</span>
-    </div>
-  )
-}
-
+import Url from "../Shared/Url";
+import DeleteButton from "./DeleteUserButton";
+import SettingsPath from "../Shared/SettingsPath";
+import { useNavigate } from "react-router-dom";
 
 
 const Edit = () => {
   const { decodedJwt, updateUserInfo, fetchCsrfToken, setErrorMessage } = useAuth()
- const { user, avatar, id, email } = decodedJwt
+  const { user, avatar, id, email } = decodedJwt
+  const navigate = useNavigate()
 
-useEffect(() => {
-  fetchCsrfToken()
-}, [])
+  useEffect(() => {
+    fetchCsrfToken()
+  }, [])
 
  const [password, setPassword] = useState<string | undefined>(undefined)
    const [formData, setFormData] = useState<UpdatedData>({
@@ -105,9 +66,13 @@ useEffect(() => {
   updateUserInfo(id, userObject)
  }
 
+  const deleteUser = () => {
+    navigate("/profile/delete")
+  }
+
   const components = [
     <HomeBtn key={0} />,
-    <SettingsTitle key={1}/>,
+    <SettingsPath path="edit" key={1}/>,
     <AppMessage
       from="room_404"
       message="only enter the information you wish to update"
@@ -136,13 +101,15 @@ useEffect(() => {
       <span className="text-gray-400">·</span>
       <img
          className="h-[64px] w-[64px] rounded-full bottom-0"
-         src={formData.avatar || avatar}
+         src={formData.avatar || avatar || undefined}
          alt="avatar"
        />
     </div>,
     <EmptyChatRow key={12} />,
     <PrimaryButton type="submit" text="Save changes" key={13} />,
-   
+    <EmptyChatRow key={20} />,
+    <EmptyChatRow key={21} />,
+    <DeleteButton type="button" fn={deleteUser} key={19}/>,
     <MessageLogger key={14} />,
   ];
 

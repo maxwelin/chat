@@ -18,7 +18,7 @@ const SideNavContent = () => {
   };
 
   const handleEdit = () => {
-    navigate("/edit");
+    navigate("/profile/edit");
   };
 
   const components = [
@@ -34,7 +34,8 @@ const SideNavContent = () => {
     <EmptyChatRow key={8} />,
     <EmptyChatRow key={11} />,
     <PrimaryButton key={9} type="button" fn={handleEdit} text="edit profile" />,
-    <PrimaryButton key={10} type="button" fn={handleLogOut} text="log out" />,
+    <EmptyChatRow key={13} />,
+    <PrimaryButton key={10} type="button" color="gray-400" fn={handleLogOut} text="log out" />,
   ];
 
   const [count, setCount] = useState(0);

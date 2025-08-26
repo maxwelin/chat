@@ -51,6 +51,37 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
     }
   };
 
+  const deleteUser = async (userId: number) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_USERS_ENDPOINT}/${userId}`, {
+        method: "DELETE",
+        headers: {
+          accept: "*/*",
+          Authorization: "Bearer " + localStorage.getItem("jwt")
+        }})
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        setErrorMessage(errorText)
+        throw new Error(`Error ${response.status}: ${errorText}`);
+      }
+
+      if(response.ok) {
+        setSuccessMessage(result.message)
+        setTimeout(() => {
+          logout()
+        }, 1000);
+      }
+
+      console.log(result);
+      
+      } catch (error) {
+        console.error(error)
+      }
+  }  
+  
   const updateUserInfo = async (userId: number, updatedData: UpdatedData) => {
     try {
       const response = await fetch(import.meta.env.VITE_USER_ENDPOINT, {
@@ -191,7 +222,8 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
         setDecodedJwt,
         updateUserInfo,
         checkJwtExpiration,
-        decodeJwt
+        decodeJwt,
+        deleteUser
       }}
     >
       {children}

@@ -24,13 +24,11 @@ const Chat = () => {
   };
   const components = [
     <HomeBtn key={0} />,
-<PrimaryButton key={8} type="button" fn={navigateToChatRooms} text="change chat room" />,
   
   <ProfilePath path="chat" key={1} />,
-  <EmptyChatRow key={13}/>,
-
-    <LogMessage message={user + " joined the chat room"} key={3} />,
-      <h1 key={12} className=" py-1 border-b-2 border-dashed border-gray-600">
+  
+  <LogMessage message={user + " joined the chat room"} key={3} />,
+  <h1 key={12} className=" py-1 border-b-2 border-dashed border-gray-600">
       <span className="text-gray-400">$</span>{" "}
       <span className="text-primary">room</span>/
       <span className="text-secondary">id</span>:&nbsp;
@@ -40,6 +38,9 @@ const Chat = () => {
     <ChatOutput key={5} />,
     <EmptyChatRow key={6} />,
     <ChatInput key={7} />,
+    <EmptyChatRow key={2} />,
+    <EmptyChatRow key={9} />,
+<PrimaryButton key={8} type="button" fn={navigateToChatRooms} text="change chat room" />,
   ];
 
   const [count, setCount] = useState(0);

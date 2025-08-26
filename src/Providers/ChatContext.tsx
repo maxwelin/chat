@@ -11,16 +11,14 @@ const ChatContextProvider: React.FC<ProviderProps> = ({ children }) => {
   
   const [loadingMessages, setLoadingMessages] = useState<boolean>(true)
   const [latestMessage, setLatestMessage] = useState<string>("");
+  const [chatRoomId, setChatRoomId] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [conversations, setConversations] = useState({
     invitesReceived: [],
     invitesSent: [],
     participating: [],
   });
-  const [chatRoomId, setChatRoomId] = useState<string>(
-    ""
-  );
-
+  
   const deleteMessage = async (messageId: number) => {
      const token = localStorage.getItem("jwt")
     if(token) {
@@ -109,6 +107,9 @@ const ChatContextProvider: React.FC<ProviderProps> = ({ children }) => {
       const data = await response.json();
       console.log(data);
       setConversations(data);
+      if(!chatRoomId) {
+        setChatRoomId(data.participating[0])
+      }
   
     } catch (error) {
       console.error("Could not retrieve conversations: " + error);

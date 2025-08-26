@@ -23,4 +23,5 @@ export interface AuthContextProps {
   updateUserInfo: (userId: number, updatedData: UpdatedData) => Promise<void>;
   checkJwtExpiration: (token: JwtBody) => void;
   decodeJwt: (token: string) => JwtBody;
+  deleteUser: (userId: number) => void;
 }

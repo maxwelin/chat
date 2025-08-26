@@ -11,10 +11,10 @@ const ChatMessage = ({ from, text, time, messageId }: ChatMessageProps) => {
   const { deleteMessage } = useChat()
   const { id } = decodedJwt
 
+  const [showMessage, setShowMessage] = useState<boolean>(false)
   const [deleting, setDeleting] = useState(false)
 
   const rnd = Math.floor(Math.random() * 2000);
-  const [showMessage, setShowMessage] = useState<boolean>(false)
 
   const timeArray = time.split('T')
   const date = timeArray[0].split("-")
@@ -22,7 +22,7 @@ const ChatMessage = ({ from, text, time, messageId }: ChatMessageProps) => {
 
   const removeMessage = () => {
     setDeleting(true)
-   deleteMessage(messageId)
+    deleteMessage(messageId)
   }
   
   useEffect(() => {
@@ -50,7 +50,7 @@ const ChatMessage = ({ from, text, time, messageId }: ChatMessageProps) => {
       <span className="text-app-timestamp min-w-30 max-h-[32px]">{date[2]}/{date[1]} @ {timeStamp[0].slice(0, 5)}</span>
       {id === from ? (
         <>
-        <button onClick={removeMessage} className="absolute left cursor-pointer hover:text-red-500">&#x2716;</button>
+        <button onClick={removeMessage} className="absolute left text-gray-400 cursor-pointer hover:text-red-500">&#x2716;</button>
 <span className="text-app-name">YOU</span>
       </>
       ) : (

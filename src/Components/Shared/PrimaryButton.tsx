@@ -6,6 +6,7 @@ const PrimaryButton = ({
   formId,
   text,
   icon = ">",
+  color
 }: ButtonProps) => {
   return (
     <button
@@ -17,7 +18,11 @@ const PrimaryButton = ({
       <span className="text-gray-400 group-focus-within:text-secondary group-hover:text-secondary">
         $
       </span>{" "}
+      {color ? (<span className={`text-${color} group-focus-within:text-text-primary group-hover:text-text-primary`}>
       {text}{" "}
+      </span>) : (<span>
+        {text}{" "}
+      </span>)}
       <span className="inline-block lowercase transition-transform duration-30 text-primary group-focus:translate-x-3 group-hover:translate-x-3">
         {icon}
       </span>

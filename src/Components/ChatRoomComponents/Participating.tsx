@@ -11,13 +11,13 @@ interface Participating {
 }
 
 const components = [
-  <AppMessage from="room_404" message="loading active chatrooms..." key={22} />,
-  <EmptyChatRow key={23} />,
-  <EmptyChatRow key={24} />,
-  <LogMessage message="chatrooms loaded" key={25} />,
+  <AppMessage from="room_404" message="loading active chatrooms..." key={0} />,
+  <EmptyChatRow key={1} />,
+  <EmptyChatRow key={2} />,
+  <LogMessage message="chatrooms loaded" key={3} />,
   <LogMessage
     message="click on a chatroom id to join"
-    key={26}
+    key={4}
   />,
 ]
 
@@ -29,7 +29,7 @@ const Participating = ({ array }: Participating) => {
   
   const [count, setCount] = useState(0);
 
-  useStagger(count, setCount, components, 500);
+  useStagger(count, setCount, components);
   
   return (
     <>
@@ -48,7 +48,7 @@ const Participating = ({ array }: Participating) => {
                 <span className="text-secondary">&nbsp;room&nbsp;{i + 1}</span>
                 :&nbsp;
               </span>
-              <span key={i + 1}>{id}</span>
+              <span key={id}>{id}</span>
             </button>
           ))}
         </div>

@@ -12,7 +12,7 @@ import MessageLogger from "../Shared/MessageLogger";
 import EmptyChatRow from "../Shared/EmptyChatRow";
 import AppMessage from "../Shared/AppMessage";
 import useStagger from "../../Hooks/useStagger";
-import { Url } from "../EditPageComponents/Edit";
+import Url from "../Shared/Url";
 
 const Register = () => {
   const { register, setErrorMessage, registered, setRegistered } = useAuth();
@@ -144,7 +144,7 @@ const Register = () => {
       key={7}
     />,
     <EmptyChatRow key={10} />,
-    <EmptyChatRow key={15} />,
+    <EmptyChatRow key={22} />,
     <PrimaryButton type="submit" text="sign up" key={11} />,
     <SecondaryButton
       text="already signed up?"

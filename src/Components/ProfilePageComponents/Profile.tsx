@@ -9,6 +9,7 @@ import LogMessage from "../Shared/LogMessage";
 import { useNavigate } from "react-router-dom";
 import ProfilePath from "../Shared/ProfilePath";
 import { useChat } from "../../Hooks/useChat";
+import ErrorButton from "../Shared/Sentry";
 
 const Profile = () => {
   const { decodedJwt, checkJwtExpiration, loggedIn } = useAuth();
@@ -58,6 +59,7 @@ const Profile = () => {
 
   const [count, setCount] = useState(0);
   useStagger(count, setCount, components, undefined);
-  return <>{components.slice(0, count)}</>;
+  return <>{components.slice(0, count)}
+  </>;
 };
 export default Profile;

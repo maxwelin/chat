@@ -11,7 +11,7 @@ useEffect(() => {
   setTimeout(() => {
     const container = containerRef.current!;
     container.scrollTop = container.scrollHeight;
-  }, 1500);
+  }, 2000);
   const intervalId = setInterval(() => {
     getMessages()
   }, 5000)

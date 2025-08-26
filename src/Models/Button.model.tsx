@@ -4,4 +4,5 @@ export interface ButtonProps {
   formId?: string;
   text: string;
   icon?: string;
+  color?: string;
 }
