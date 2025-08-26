@@ -199,6 +199,7 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
       
     } catch (error) {
       console.error(error);
+      Sentry.captureException(error)
     }
   };
 
