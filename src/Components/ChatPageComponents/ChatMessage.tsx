@@ -14,6 +14,7 @@ const ChatMessage = ({ from, text, time, messageId }: ChatMessageProps) => {
   const [showMessage, setShowMessage] = useState<boolean>(false)
   const [deleting, setDeleting] = useState(false)
 
+
   const rnd = Math.floor(Math.random() * 2000);
 
   const timeArray = time.split('T')
@@ -23,6 +24,10 @@ const ChatMessage = ({ from, text, time, messageId }: ChatMessageProps) => {
   const removeMessage = () => {
     setDeleting(true)
     deleteMessage(messageId)
+  }
+
+  const getUser = (userId: number) => {
+    return `${userId}`
   }
   
   useEffect(() => {
@@ -56,7 +61,7 @@ const ChatMessage = ({ from, text, time, messageId }: ChatMessageProps) => {
       ) : (
         <>
         <span className="text-app-color">from</span>/
-<span className="text-secondary">{from}</span>
+<span className="text-secondary">{getUser(from)}</span>
       </>
       )}
       {/* {avatar && <img

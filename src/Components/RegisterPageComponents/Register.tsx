@@ -136,7 +136,7 @@ const Register = () => {
     />,
     <FormControl
       type="password"
-      id="repeatPassword"
+        id="repeatPassword"
       required={true}
       value={repeatPassword}
       fn={handleRepeatPasswordChange}

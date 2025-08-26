@@ -1,4 +1,4 @@
-import * as Sentry from "@sentry/react";
+// import * as Sentry from "@sentry/react";
 import { createContext, useEffect, useState } from "react";
 import type { AuthContextProps } from "../Models/AuthContext.model";
 import type { ProviderProps } from "../Models/ProviderProps.model";
@@ -141,7 +141,6 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
 
   const setLocalStorage = (token: string) => {
     const decodedJwt = decodeJwt(token);
-    console.log(decodedJwt);
     setDecodedJwt(decodedJwt);
     localStorage.setItem("jwt", token);
     localStorage.setItem("decodedJwt", JSON.stringify(decodedJwt));
@@ -190,7 +189,8 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
 
       if (!response.ok) {
         setErrorMessage(result.error);
-        Sentry.captureException(result.error)
+        // uncomment row below to enable monitoring of this error
+        // Sentry.captureException(result.error)
         throw new Error(result.error || `Response status: ${response.status}`);
       }
 
@@ -199,7 +199,8 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
       
     } catch (error) {
       console.error(error);
-      Sentry.captureException(error)
+      // uncomment row below to enable monitoring of this error
+      // Sentry.captureException(error)
     }
   };
 
