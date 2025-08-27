@@ -1,7 +1,6 @@
 
 export const deletingMessagePlaceholders = [
   '! STACK OVERFLOW',
-  ':: FIREWALL BREACHED',
   '⡇⣇⣆⣄⣀⣠⣤⣶⣾⣿⡇⣇⣆⣄⣀⣠⣤⣶⣾⣿',
   '⡇⣇⣆⣄⣀⣿⡇⣇⣆⣄__⣠⣤⣶⣾⣀⣠⣶⣾⣿',
   '⣾⣽A⣻⢿ ⡿#⠿⣾⣽<⣻⢿@⡿⠿⣾⣽&⣻ ⢿⡿_⠿⣾⣽⣻ *⡿⠿',

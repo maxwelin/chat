@@ -108,25 +108,3 @@ const Login = () => {
 };
 export default Login;
 
-{
-  /* <label htmlFor="username">Username:</label>
-<input
-  required
-  value={username}
-  onChange={handeUsernameChange}
-  id="username"
-  type="text"
-  autoComplete="username"
-  className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-secondary outline-none"
-/>
-<label htmlFor="password">Password:</label>
-<input
-  required
-  value={password}
-  onChange={handlePasswordChange}
-  id="password"
-  type="password"
-  autoComplete="current-password"
-  className="w-full border-2 border-dashed border-gray-500 px-2 py-1 placeholder-gray-500 focus:border-secondary outline-none"
-/> */
-}
