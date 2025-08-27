@@ -1,16 +1,20 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useChat } from "../../Hooks/useChat";
 import ChatMessage from "./ChatMessage";
 import AppMessage from "../Shared/AppMessage";
 
 const ChatOutput = () => {
-  const { getMessages, messages, loadingMessages } = useChat();
+  const { getMessages, messages, loadingMessages, getUsernames  } = useChat();
+
+  const [usernames, setUsernames] = useState<Record<number, string>>({});
+  const fetchNamesRef = useRef(true);
 
 useEffect(() => {
   getMessages()
   setTimeout(() => {
     const container = containerRef.current!;
     container.scrollTop = container.scrollHeight;
+    fetchNamesRef.current = false
   }, 2000);
   const intervalId = setInterval(() => {
     getMessages()
@@ -18,6 +22,24 @@ useEffect(() => {
 
   return () => clearInterval(intervalId)
 }, [])
+
+useEffect(() => {
+  if (!fetchNamesRef.current) return;
+
+  const fetchAndStoreUsernames = async () => {
+    const users = await getUsernames(messages);
+    const newUserMap: Record<number, string> = {};
+
+    users?.forEach(user => {
+      newUserMap[user.id] = user.username;
+    });
+
+    setUsernames(prev => ({ ...prev, ...newUserMap }));
+  };
+
+  fetchAndStoreUsernames();
+}, [messages]);
+
 
 
 useEffect(() => {
@@ -41,7 +63,7 @@ useEffect(() => {
       </>
       </>) : (<>
           {messages.map((message) => (
-            <ChatMessage key={message.id} from={message.userId} text={message.text} time={message.createdAt} messageId={message.id} />
+            <ChatMessage key={message.id} from={usernames[message.userId]} text={message.text} time={message.createdAt} messageId={message.id} />
             
           ))}
       </>)}

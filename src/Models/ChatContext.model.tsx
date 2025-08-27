@@ -20,4 +20,5 @@ export default interface ChatContextProps {
   messages: Message[]
   setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
   deleteMessage: (messageId: number) => void;
+  getUsernames: (messages: Message[]) => Promise<{ id: number; username: string; }[] | undefined>
 }

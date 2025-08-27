@@ -47,35 +47,42 @@ const ChatContextProvider: React.FC<ProviderProps> = ({ children }) => {
     }
   }
 
-  // const getUsernames = async (messages: Message[]) => {
-  //   const userIds = [...new Set(messages.map(msg => msg.userId))]
-  //   userIds.forEach(userId => {
-  //     getUserById(userId)
-  //   });
-  // }
+  const getUsernames = async (messages: Message[]) => {
+  const userIds = [...new Set(messages.map(msg => msg.userId))];
 
-  // const getUserById = async (id: number) => {
-  //   try {
-  //     const response = await fetch(`${import.meta.env.VITE_USERS_ENDPOINT}/${id}`, {
-  //       method: "GET",
-  //       headers: {
-  //         accept: "*/*",
-  //         Authorization: "Bearer " + localStorage.getItem("jwt")
-  //       }
-  //     })
+  try {
+    const users = await Promise.all(userIds.map(userId => getUserById(userId)));
+     return users.map(user => ({
+    id: user.id,
+    username: user.username
+  }));
+  } catch (error) {
+    console.error("Failed to fetch one or more users:", error);
+  }
+};
 
-  //     if (!response.ok) {
-  //       const errorText = await response.text();
-  //       throw new Error(`Error ${response.status}: ${errorText}`);
-  //     }
+  const getUserById = async (id: number) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_USERS_ENDPOINT}/${id}`, {
+        method: "GET",
+        headers: {
+          accept: "*/*",
+          Authorization: "Bearer " + localStorage.getItem("jwt")
+        }
+      })
 
-  //     const data = await response.json()
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Error ${response.status}: ${errorText}`);
+      }
+
+      const data = await response.json()
     
-  //     console.log(data[0])
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
+      return(data[0])
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   const getMessages = async () => {
     
@@ -101,9 +108,8 @@ const ChatContextProvider: React.FC<ProviderProps> = ({ children }) => {
 
       const data = await response.json()
       setMessages(data)
-      console.log(data)
+      // console.log(data)
       setLoadingMessages(false)
-      // getUsernames(data)
     } catch (error) {
       console.error(error)
     }
@@ -191,7 +197,8 @@ const ChatContextProvider: React.FC<ProviderProps> = ({ children }) => {
         getMessages,
         messages,
         setMessages,
-        deleteMessage
+        deleteMessage,
+        getUsernames
       }}
     >
       {children}

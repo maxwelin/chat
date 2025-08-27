@@ -1,5 +1,5 @@
 export interface ChatMessageProps {
-  from: number;
+  from: string;
   text: string;
   time: string;
   messageId: number;

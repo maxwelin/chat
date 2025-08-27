@@ -9,26 +9,23 @@ import { useChat } from "../../Hooks/useChat";
 const ChatMessage = ({ from, text, time, messageId }: ChatMessageProps) => {
   const { decodedJwt } = useAuth()
   const { deleteMessage } = useChat()
-  const { id } = decodedJwt
+  const { user } = decodedJwt
 
   const [showMessage, setShowMessage] = useState<boolean>(false)
   const [deleting, setDeleting] = useState(false)
 
 
-  const rnd = Math.floor(Math.random() * 2000);
-
+  
   const timeArray = time.split('T')
   const date = timeArray[0].split("-")
   const timeStamp = timeArray[1].split(".")
-
+  
   const removeMessage = () => {
     setDeleting(true)
     deleteMessage(messageId)
   }
 
-  const getUser = (userId: number) => {
-    return `${userId}`
-  }
+  const rnd = Math.floor(Math.random() * 2000);
   
   useEffect(() => {
      const timer = setTimeout(() => {
@@ -53,7 +50,7 @@ const ChatMessage = ({ from, text, time, messageId }: ChatMessageProps) => {
     <p className="py-1 flex relative">
       <span className="text-gray-400">&gt;</span>&nbsp;
       <span className="text-app-timestamp min-w-30 max-h-[32px]">{date[2]}/{date[1]} @ {timeStamp[0].slice(0, 5)}</span>
-      {id === from ? (
+      {user === from ? (
         <>
         <button onClick={removeMessage} className="absolute left text-gray-400 cursor-pointer hover:text-red-500">&#x2716;</button>
 <span className="text-app-name">YOU</span>
@@ -61,7 +58,7 @@ const ChatMessage = ({ from, text, time, messageId }: ChatMessageProps) => {
       ) : (
         <>
         <span className="text-app-color">from</span>/
-<span className="text-secondary">{getUser(from)}</span>
+<span className="text-secondary">{from}</span>
       </>
       )}
       {/* {avatar && <img
