@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { loadingMessagePlaceholders } from "../constants/loadingMessagePlaceholders";
+import { loadingMessagePlaceholders } from "../../constants/loadingMessagePlaceholders";
 
 const Row = ({ text }: {text: string}) => {
 

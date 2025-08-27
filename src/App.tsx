@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthContextProvider } from "./Providers/AuthContext";
 import HomePage from "./Pages/HomePage";
 import ProtectedRoute from "./Components/ProtectedRoute";
-import NotFound from "./Components/NotFound";
+import NotFound from "./Components/NotFoundComponents/NotFound";
 import RegisterPage from "./Pages/RegisterPage";
 import LoginPage from "./Pages/LoginPage";
 import ProfilePage from "./Pages/ProfilePage";
