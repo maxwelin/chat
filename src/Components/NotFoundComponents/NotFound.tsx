@@ -3,7 +3,7 @@ import useStagger from "../../Hooks/useStagger";
 import HomeBtn from "../Shared/HomeButton";
 import Title from "../Shared/Title";
 import AppMessage from "../Shared/AppMessage";
-import Logo from "../NotFoundLogo";
+import Logo from "./NotFoundLogo";
 
 const NotFound = () => {
     const components = [
