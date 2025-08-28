@@ -12,8 +12,10 @@ const ChatOutput = () => {
 useEffect(() => {
   getMessages()
   setTimeout(() => {
-    const container = containerRef.current!;
-    container.scrollTop = container.scrollHeight;
+    const container = containerRef.current;
+    if(container){
+      container.scrollTop = container.scrollHeight;
+    }
     fetchNamesRef.current = false
   }, 2000);
   const intervalId = setInterval(() => {

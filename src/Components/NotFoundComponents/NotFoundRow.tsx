@@ -22,7 +22,7 @@ const Row = ({ text }: {text: string}) => {
     {showMessage ? (<>
     <pre className="py-0.5">{text}</pre>
     </>) : (<>
-      <p className={`py- 0.5 max-h-[28px] min-h-[28px] text-green-500 animate-pulse`}>{loadingPlaceholder}</p>
+      <p className={`py-0.5 max-h-[28px] min-h-[28px] text-green-500 animate-pulse`}>{loadingPlaceholder}</p>
     </>)}
     </>
   );

@@ -24,7 +24,7 @@ const MessageLogger = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setSuccessMessage("");
-    }, 1500);
+    }, 1250);
 
     return () => {
       clearTimeout(timeout);
