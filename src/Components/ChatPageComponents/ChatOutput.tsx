@@ -2,9 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { useChat } from "../../Hooks/useChat";
 import ChatMessage from "./ChatMessage";
 import AppMessage from "../Shared/AppMessage";
+import { useAuth } from "../../Hooks/useAuth";
 
 const ChatOutput = () => {
   const { getMessages, messages, loadingMessages, getUsernames  } = useChat();
+  const { decodedJwt  } = useAuth();
+  const { user  } = decodedJwt
 
   const [usernames, setUsernames] = useState<Record<number, string>>({});
   const fetchNamesRef = useRef(true);
@@ -65,11 +68,11 @@ useEffect(() => {
       </>
       </>) : (<>
           {messages.map((message) => (
-            <ChatMessage key={message.id} from={usernames[message.userId]} text={message.text} time={message.createdAt} messageId={message.id} />
+            <ChatMessage key={message.id} from={usernames[message.userId] || user} text={message.text} time={message.createdAt} messageId={message.id} />
             
           ))}
       </>)}
-      {messages.length === 0 && <AppMessage from="room_404" message="invite accepted, type a message to start a conversation" />}
+      {messages.length === 0 && <AppMessage from="room_404" message="no messages detected in this chat room yet" />}
     </div>
   );
 };

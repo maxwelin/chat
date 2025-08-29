@@ -73,7 +73,7 @@ const AuthContextProvider: React.FC<ProviderProps> = ({ children }) => {
         setSuccessMessage(result.message)
         setTimeout(() => {
           logout()
-        }, 1200);
+        }, 1250);
       }
 
       console.log(result);

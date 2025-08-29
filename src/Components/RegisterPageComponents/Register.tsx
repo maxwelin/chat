@@ -41,7 +41,7 @@ const Register = () => {
       setTimeout(() => {
         navigate("/login");
         setRegistered(false);
-      }, 1500);
+      }, 1250);
     }
   }, [registered, navigate, setRegistered]);
 

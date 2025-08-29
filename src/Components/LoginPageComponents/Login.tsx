@@ -10,9 +10,11 @@ import MessageLogger from "../Shared/MessageLogger";
 import EmptyChatRow from "../Shared/EmptyChatRow";
 import AppMessage from "../Shared/AppMessage";
 import useStagger from "../../Hooks/useStagger";
+import { useChat } from "../../Hooks/useChat";
 
 const Login = () => {
   const { login, loggedIn, setErrorMessage } = useAuth();
+  const { setChatRoomId, setMessages } = useChat()
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -30,6 +32,8 @@ const Login = () => {
   }, []);
 
   useEffect(() => {
+    setChatRoomId("")
+    setMessages([])
     if (loggedIn === true) {
       navigate("/profile");
     }
@@ -37,6 +41,8 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setChatRoomId("")
+    setMessages([])
     login({
       username: username,
       password: password,

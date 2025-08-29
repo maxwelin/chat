@@ -20,13 +20,12 @@ const ChatPage = () => {
 
   const components = [
     <HomeBtn key={0}/>,
+    <ProfilePath path="chat" key={2} />,
+    <LogMessage message="no chatroom detected" key={5}/>,
+    <LogMessage message="join a chatroom to chat" key={6}/>,
+    <EmptyChatRow key={3}/>,
+    <EmptyChatRow key={4}/>,
     <PrimaryButton key={1} type="button" fn={navigateToChatRooms} text="to chatrooms" />,
-  
-  <ProfilePath path="chat" key={2} />,
-  <EmptyChatRow key={3}/>,
-  <EmptyChatRow key={4}/>,
-  <LogMessage message="no chatroom detected" key={5}/>,
-  <LogMessage message="join a chatroom to chat" key={6}/>,
   ]
   
   const [count, setCount] = useState(0);

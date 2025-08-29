@@ -16,7 +16,7 @@ const NotFound = () => {
     const [count, setCount] = useState(0);
   
     useStagger(count, setCount, components);
-  
+    
   return(
     <div className="w-full flex place-content-center pt-10">
       <div className="flex flex-col w-lg ">
