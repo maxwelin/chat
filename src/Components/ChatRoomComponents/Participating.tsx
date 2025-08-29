@@ -37,7 +37,7 @@ const Participating = ({ array }: Participating) => {
       {count === components.length && (
         <div className="border-t-2 border-dashed border-gray-600">
           {array.map((id, i) => (
-            <button onClick={() => {
+            <button key={id} onClick={() => {
               setChatRoomId(id);
               navigate("/chat");
               setLoadingMessages(true)
@@ -48,7 +48,7 @@ const Participating = ({ array }: Participating) => {
                 <span className="text-secondary">&nbsp;room&nbsp;{i + 1}</span>
                 :&nbsp;
               </span>
-              <span key={id}>{id}</span>
+              <span >{id}</span>
             </button>
           ))}
         </div>
