@@ -35,6 +35,7 @@ const Invites = ({ array, status, delay }: InvitesProps) => {
        className="border-t-2 border-dashed border-gray-600">
           {array.map((id, i) => (
             <button
+            key={i + components.length + 1}
              onClick={() => {
               setChatRoomId(id);
               navigate("/chat");
@@ -44,7 +45,7 @@ const Invites = ({ array, status, delay }: InvitesProps) => {
                 <span>&gt;</span>
                 <span className="text-secondary">&nbsp;invite&nbsp;{i + 1}</span>:&nbsp;
               </span>
-              <span key={i + components.length + 1}>{id}</span>
+              <span >{id}</span>
             </button>
           ))}
         </div>
